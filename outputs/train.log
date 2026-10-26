@@ -1,0 +1,569 @@
+[2026-10-26 00:28:28] [INFO] [train.py:51]: Loaded configuration from: configs/default.yaml
+[2026-10-26 00:28:28] [INFO] [train.py:52]: Compute device: cuda (GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU)
+[2026-10-26 00:28:28] [INFO] [train.py:60]: Initializing train/validation split...
+[2026-10-26 00:28:29] [INFO] [train.py:67]: Train split: 2,409,110 spectra | Val split: 130,498 spectra
+[2026-10-26 00:28:29] [INFO] [train.py:75]: Fitting metadata preprocessor on training partition...
+[2026-10-26 00:29:32] [INFO] [train.py:92]: Saved fitted metadata preprocessor to data\cache\meta_preprocessor.joblib
+[2026-10-26 00:29:33] [INFO] [train.py:106]: Initialized SpectrumMoleculeModel with 6,567,680 trainable parameters.
+[2026-10-26 00:29:35] [INFO] [trainer.py:100]: Starting training from step 1 to 500 on cuda
+[2026-10-26 00:29:36] [INFO] [trainer.py:128]: Step    10/500 | Mean Loss (10): 5.1628 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:37] [INFO] [trainer.py:128]: Step    20/500 | Mean Loss (10): 4.7376 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:37] [INFO] [trainer.py:128]: Step    30/500 | Mean Loss (10): 2.9582 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:37] [INFO] [trainer.py:128]: Step    40/500 | Mean Loss (10): 2.9285 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:38] [INFO] [trainer.py:128]: Step    50/500 | Mean Loss (10): 2.8294 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:38] [INFO] [trainer.py:128]: Step    60/500 | Mean Loss (10): 2.8837 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:38] [INFO] [trainer.py:128]: Step    70/500 | Mean Loss (10): 2.8609 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:38] [INFO] [trainer.py:128]: Step    80/500 | Mean Loss (10): 2.8333 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:39] [INFO] [trainer.py:128]: Step    90/500 | Mean Loss (10): 2.7826 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:39] [INFO] [trainer.py:128]: Step   100/500 | Mean Loss (10): 2.8237 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:39] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_100.pt
+[2026-10-26 00:29:39] [INFO] [trainer.py:128]: Step   110/500 | Mean Loss (10): 2.7623 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:40] [INFO] [trainer.py:128]: Step   120/500 | Mean Loss (10): 2.7547 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:40] [INFO] [trainer.py:128]: Step   130/500 | Mean Loss (10): 2.7367 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:40] [INFO] [trainer.py:128]: Step   140/500 | Mean Loss (10): 2.7712 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:41] [INFO] [trainer.py:128]: Step   150/500 | Mean Loss (10): 2.8265 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:41] [INFO] [trainer.py:128]: Step   160/500 | Mean Loss (10): 2.8138 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:41] [INFO] [trainer.py:128]: Step   170/500 | Mean Loss (10): 2.7865 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:42] [INFO] [trainer.py:128]: Step   180/500 | Mean Loss (10): 2.7521 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:42] [INFO] [trainer.py:128]: Step   190/500 | Mean Loss (10): 2.7426 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:42] [INFO] [trainer.py:128]: Step   200/500 | Mean Loss (10): 2.6782 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:42] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_200.pt
+[2026-10-26 00:29:43] [INFO] [trainer.py:128]: Step   210/500 | Mean Loss (10): 2.8269 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:43] [INFO] [trainer.py:128]: Step   220/500 | Mean Loss (10): 2.6798 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:43] [INFO] [trainer.py:128]: Step   230/500 | Mean Loss (10): 2.8082 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:43] [INFO] [trainer.py:128]: Step   240/500 | Mean Loss (10): 2.7008 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:44] [INFO] [trainer.py:128]: Step   250/500 | Mean Loss (10): 2.7115 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:44] [INFO] [trainer.py:128]: Step   260/500 | Mean Loss (10): 2.7919 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:44] [INFO] [trainer.py:128]: Step   270/500 | Mean Loss (10): 2.7265 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:45] [INFO] [trainer.py:128]: Step   280/500 | Mean Loss (10): 2.6796 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:45] [INFO] [trainer.py:128]: Step   290/500 | Mean Loss (10): 2.7438 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:45] [INFO] [trainer.py:128]: Step   300/500 | Mean Loss (10): 2.7456 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:45] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_300.pt
+[2026-10-26 00:29:46] [INFO] [trainer.py:128]: Step   310/500 | Mean Loss (10): 2.7113 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:46] [INFO] [trainer.py:128]: Step   320/500 | Mean Loss (10): 2.7952 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:46] [INFO] [trainer.py:128]: Step   330/500 | Mean Loss (10): 2.8573 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:47] [INFO] [trainer.py:128]: Step   340/500 | Mean Loss (10): 2.7644 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:47] [INFO] [trainer.py:128]: Step   350/500 | Mean Loss (10): 2.7049 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:47] [INFO] [trainer.py:128]: Step   360/500 | Mean Loss (10): 2.8238 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:48] [INFO] [trainer.py:128]: Step   370/500 | Mean Loss (10): 2.7209 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:48] [INFO] [trainer.py:128]: Step   380/500 | Mean Loss (10): 2.6966 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:48] [INFO] [trainer.py:128]: Step   390/500 | Mean Loss (10): 2.7460 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:48] [INFO] [trainer.py:128]: Step   400/500 | Mean Loss (10): 2.7336 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:49] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_400.pt
+[2026-10-26 00:29:49] [INFO] [trainer.py:128]: Step   410/500 | Mean Loss (10): 2.7906 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:49] [INFO] [trainer.py:128]: Step   420/500 | Mean Loss (10): 2.7227 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:50] [INFO] [trainer.py:128]: Step   430/500 | Mean Loss (10): 2.7095 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:50] [INFO] [trainer.py:128]: Step   440/500 | Mean Loss (10): 2.7159 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:50] [INFO] [trainer.py:128]: Step   450/500 | Mean Loss (10): 2.7356 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:50] [INFO] [trainer.py:128]: Step   460/500 | Mean Loss (10): 2.6144 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:51] [INFO] [trainer.py:128]: Step   470/500 | Mean Loss (10): 2.7480 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:51] [INFO] [trainer.py:128]: Step   480/500 | Mean Loss (10): 2.7566 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:51] [INFO] [trainer.py:128]: Step   490/500 | Mean Loss (10): 2.6975 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:52] [INFO] [trainer.py:128]: Step   500/500 | Mean Loss (10): 2.6666 | GPU Mem: 150.5 MB
+[2026-10-26 00:29:52] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_500.pt
+[2026-10-26 00:29:52] [INFO] [trainer.py:170]: Training completed in 16.5s. Total steps: 500
+[2026-10-26 01:01:12] [INFO] [train.py:51]: Loaded configuration from: configs/default.yaml
+[2026-10-26 01:01:12] [INFO] [train.py:52]: Compute device: cuda (GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU)
+[2026-10-26 01:01:12] [INFO] [train.py:60]: Initializing train/validation split...
+[2026-10-26 01:01:13] [INFO] [train.py:67]: Train split: 2,409,110 spectra | Val split: 130,498 spectra
+[2026-10-26 01:01:13] [INFO] [train.py:72]: Loading metadata preprocessor from data\cache\meta_preprocessor.joblib
+[2026-10-26 01:01:13] [INFO] [train.py:106]: Initialized SpectrumMoleculeModel with 6,567,680 trainable parameters.
+[2026-10-26 01:01:15] [INFO] [train.py:116]: Resuming model and optimizer from checkpoint: checkpoints/spectrum_molecule_step_500.pt
+[2026-10-26 01:01:15] [INFO] [train.py:119]: Resumed from step 500
+[2026-10-26 01:01:15] [INFO] [trainer.py:100]: Starting training from step 501 to 5000 on cuda
+[2026-10-26 01:01:16] [INFO] [trainer.py:128]: Step   510/5000 | Mean Loss (10): 4.7956 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:17] [INFO] [trainer.py:128]: Step   520/5000 | Mean Loss (10): 4.4935 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:17] [INFO] [trainer.py:128]: Step   530/5000 | Mean Loss (10): 2.6081 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:17] [INFO] [trainer.py:128]: Step   540/5000 | Mean Loss (10): 2.5605 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:18] [INFO] [trainer.py:128]: Step   550/5000 | Mean Loss (10): 2.4714 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:18] [INFO] [trainer.py:128]: Step   560/5000 | Mean Loss (10): 2.5013 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:18] [INFO] [trainer.py:128]: Step   570/5000 | Mean Loss (10): 2.5375 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:19] [INFO] [trainer.py:128]: Step   580/5000 | Mean Loss (10): 2.4898 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:19] [INFO] [trainer.py:128]: Step   590/5000 | Mean Loss (10): 2.4590 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:19] [INFO] [trainer.py:128]: Step   600/5000 | Mean Loss (10): 2.4700 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:19] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_600.pt
+[2026-10-26 01:01:19] [INFO] [trainer.py:128]: Step   610/5000 | Mean Loss (10): 2.4132 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:20] [INFO] [trainer.py:128]: Step   620/5000 | Mean Loss (10): 2.4062 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:20] [INFO] [trainer.py:128]: Step   630/5000 | Mean Loss (10): 2.4457 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:20] [INFO] [trainer.py:128]: Step   640/5000 | Mean Loss (10): 2.4528 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:20] [INFO] [trainer.py:128]: Step   650/5000 | Mean Loss (10): 2.4661 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:21] [INFO] [trainer.py:128]: Step   660/5000 | Mean Loss (10): 2.5147 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:21] [INFO] [trainer.py:128]: Step   670/5000 | Mean Loss (10): 2.4850 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:21] [INFO] [trainer.py:128]: Step   680/5000 | Mean Loss (10): 2.4225 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:21] [INFO] [trainer.py:128]: Step   690/5000 | Mean Loss (10): 2.3844 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:22] [INFO] [trainer.py:128]: Step   700/5000 | Mean Loss (10): 2.3467 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:22] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_700.pt
+[2026-10-26 01:01:22] [INFO] [trainer.py:128]: Step   710/5000 | Mean Loss (10): 2.4929 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:22] [INFO] [trainer.py:128]: Step   720/5000 | Mean Loss (10): 2.3829 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:23] [INFO] [trainer.py:128]: Step   730/5000 | Mean Loss (10): 2.4706 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:23] [INFO] [trainer.py:128]: Step   740/5000 | Mean Loss (10): 2.3907 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:23] [INFO] [trainer.py:128]: Step   750/5000 | Mean Loss (10): 2.3941 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:23] [INFO] [trainer.py:128]: Step   760/5000 | Mean Loss (10): 2.5055 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:24] [INFO] [trainer.py:128]: Step   770/5000 | Mean Loss (10): 2.4177 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:24] [INFO] [trainer.py:128]: Step   780/5000 | Mean Loss (10): 2.3898 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:24] [INFO] [trainer.py:128]: Step   790/5000 | Mean Loss (10): 2.4281 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:24] [INFO] [trainer.py:128]: Step   800/5000 | Mean Loss (10): 2.4221 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:25] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_800.pt
+[2026-10-26 01:01:25] [INFO] [trainer.py:128]: Step   810/5000 | Mean Loss (10): 2.4009 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:25] [INFO] [trainer.py:128]: Step   820/5000 | Mean Loss (10): 2.4970 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:25] [INFO] [trainer.py:128]: Step   830/5000 | Mean Loss (10): 2.5123 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:26] [INFO] [trainer.py:128]: Step   840/5000 | Mean Loss (10): 2.4497 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:26] [INFO] [trainer.py:128]: Step   850/5000 | Mean Loss (10): 2.3726 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:26] [INFO] [trainer.py:128]: Step   860/5000 | Mean Loss (10): 2.5165 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:26] [INFO] [trainer.py:128]: Step   870/5000 | Mean Loss (10): 2.3748 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:27] [INFO] [trainer.py:128]: Step   880/5000 | Mean Loss (10): 2.4151 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:27] [INFO] [trainer.py:128]: Step   890/5000 | Mean Loss (10): 2.4708 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:27] [INFO] [trainer.py:128]: Step   900/5000 | Mean Loss (10): 2.4302 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:27] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_900.pt
+[2026-10-26 01:01:28] [INFO] [trainer.py:128]: Step   910/5000 | Mean Loss (10): 2.4938 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:28] [INFO] [trainer.py:128]: Step   920/5000 | Mean Loss (10): 2.4594 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:28] [INFO] [trainer.py:128]: Step   930/5000 | Mean Loss (10): 2.4011 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:28] [INFO] [trainer.py:128]: Step   940/5000 | Mean Loss (10): 2.3931 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:29] [INFO] [trainer.py:128]: Step   950/5000 | Mean Loss (10): 2.4384 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:29] [INFO] [trainer.py:128]: Step   960/5000 | Mean Loss (10): 2.3317 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:29] [INFO] [trainer.py:128]: Step   970/5000 | Mean Loss (10): 2.4116 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:29] [INFO] [trainer.py:128]: Step   980/5000 | Mean Loss (10): 2.4510 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:30] [INFO] [trainer.py:128]: Step   990/5000 | Mean Loss (10): 2.3910 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:30] [INFO] [trainer.py:128]: Step  1000/5000 | Mean Loss (10): 2.3457 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:30] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_1000.pt
+[2026-10-26 01:01:30] [INFO] [trainer.py:128]: Step  1010/5000 | Mean Loss (10): 2.6962 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:30] [INFO] [trainer.py:128]: Step  1020/5000 | Mean Loss (10): 2.6823 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:31] [INFO] [trainer.py:128]: Step  1030/5000 | Mean Loss (10): 2.6199 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:31] [INFO] [trainer.py:128]: Step  1040/5000 | Mean Loss (10): 2.5855 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:31] [INFO] [trainer.py:128]: Step  1050/5000 | Mean Loss (10): 2.6387 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:31] [INFO] [trainer.py:128]: Step  1060/5000 | Mean Loss (10): 2.6209 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:32] [INFO] [trainer.py:128]: Step  1070/5000 | Mean Loss (10): 2.6879 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:32] [INFO] [trainer.py:128]: Step  1080/5000 | Mean Loss (10): 2.5923 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:32] [INFO] [trainer.py:128]: Step  1090/5000 | Mean Loss (10): 2.6957 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:32] [INFO] [trainer.py:128]: Step  1100/5000 | Mean Loss (10): 2.7436 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:33] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_1100.pt
+[2026-10-26 01:01:33] [INFO] [trainer.py:128]: Step  1110/5000 | Mean Loss (10): 2.6749 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:33] [INFO] [trainer.py:128]: Step  1120/5000 | Mean Loss (10): 2.5117 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:33] [INFO] [trainer.py:128]: Step  1130/5000 | Mean Loss (10): 2.6406 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:34] [INFO] [trainer.py:128]: Step  1140/5000 | Mean Loss (10): 2.6284 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:34] [INFO] [trainer.py:128]: Step  1150/5000 | Mean Loss (10): 2.5949 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:34] [INFO] [trainer.py:128]: Step  1160/5000 | Mean Loss (10): 2.5328 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:34] [INFO] [trainer.py:128]: Step  1170/5000 | Mean Loss (10): 2.6315 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:35] [INFO] [trainer.py:128]: Step  1180/5000 | Mean Loss (10): 2.6799 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:35] [INFO] [trainer.py:128]: Step  1190/5000 | Mean Loss (10): 2.5772 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:35] [INFO] [trainer.py:128]: Step  1200/5000 | Mean Loss (10): 2.5751 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:35] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_1200.pt
+[2026-10-26 01:01:35] [INFO] [trainer.py:128]: Step  1210/5000 | Mean Loss (10): 2.6370 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:36] [INFO] [trainer.py:128]: Step  1220/5000 | Mean Loss (10): 2.5126 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:36] [INFO] [trainer.py:128]: Step  1230/5000 | Mean Loss (10): 2.5212 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:36] [INFO] [trainer.py:128]: Step  1240/5000 | Mean Loss (10): 2.5500 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:36] [INFO] [trainer.py:128]: Step  1250/5000 | Mean Loss (10): 2.4157 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:37] [INFO] [trainer.py:128]: Step  1260/5000 | Mean Loss (10): 2.6468 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:37] [INFO] [trainer.py:128]: Step  1270/5000 | Mean Loss (10): 2.5137 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:37] [INFO] [trainer.py:128]: Step  1280/5000 | Mean Loss (10): 2.4835 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:37] [INFO] [trainer.py:128]: Step  1290/5000 | Mean Loss (10): 2.5431 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:38] [INFO] [trainer.py:128]: Step  1300/5000 | Mean Loss (10): 2.5084 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:38] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_1300.pt
+[2026-10-26 01:01:38] [INFO] [trainer.py:128]: Step  1310/5000 | Mean Loss (10): 2.5839 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:38] [INFO] [trainer.py:128]: Step  1320/5000 | Mean Loss (10): 2.4602 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:38] [INFO] [trainer.py:128]: Step  1330/5000 | Mean Loss (10): 2.4729 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:39] [INFO] [trainer.py:128]: Step  1340/5000 | Mean Loss (10): 2.5036 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:39] [INFO] [trainer.py:128]: Step  1350/5000 | Mean Loss (10): 2.5575 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:39] [INFO] [trainer.py:128]: Step  1360/5000 | Mean Loss (10): 2.4908 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:39] [INFO] [trainer.py:128]: Step  1370/5000 | Mean Loss (10): 2.5450 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:40] [INFO] [trainer.py:128]: Step  1380/5000 | Mean Loss (10): 2.4844 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:40] [INFO] [trainer.py:128]: Step  1390/5000 | Mean Loss (10): 2.4306 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:40] [INFO] [trainer.py:128]: Step  1400/5000 | Mean Loss (10): 2.4007 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:40] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_1400.pt
+[2026-10-26 01:01:40] [INFO] [trainer.py:128]: Step  1410/5000 | Mean Loss (10): 2.4727 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:41] [INFO] [trainer.py:128]: Step  1420/5000 | Mean Loss (10): 2.5245 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:41] [INFO] [trainer.py:128]: Step  1430/5000 | Mean Loss (10): 2.5193 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:41] [INFO] [trainer.py:128]: Step  1440/5000 | Mean Loss (10): 2.4840 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:41] [INFO] [trainer.py:128]: Step  1450/5000 | Mean Loss (10): 2.5538 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:42] [INFO] [trainer.py:128]: Step  1460/5000 | Mean Loss (10): 2.4738 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:42] [INFO] [trainer.py:128]: Step  1470/5000 | Mean Loss (10): 2.4684 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:42] [INFO] [trainer.py:128]: Step  1480/5000 | Mean Loss (10): 2.6071 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:42] [INFO] [trainer.py:128]: Step  1490/5000 | Mean Loss (10): 2.5447 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:43] [INFO] [trainer.py:128]: Step  1500/5000 | Mean Loss (10): 2.4427 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:43] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_1500.pt
+[2026-10-26 01:01:43] [INFO] [trainer.py:128]: Step  1510/5000 | Mean Loss (10): 2.4442 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:43] [INFO] [trainer.py:128]: Step  1520/5000 | Mean Loss (10): 2.5798 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:44] [INFO] [trainer.py:128]: Step  1530/5000 | Mean Loss (10): 2.4013 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:44] [INFO] [trainer.py:128]: Step  1540/5000 | Mean Loss (10): 2.5468 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:44] [INFO] [trainer.py:128]: Step  1550/5000 | Mean Loss (10): 2.4666 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:44] [INFO] [trainer.py:128]: Step  1560/5000 | Mean Loss (10): 2.4659 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:45] [INFO] [trainer.py:128]: Step  1570/5000 | Mean Loss (10): 2.4431 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:45] [INFO] [trainer.py:128]: Step  1580/5000 | Mean Loss (10): 2.5046 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:45] [INFO] [trainer.py:128]: Step  1590/5000 | Mean Loss (10): 2.4613 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:45] [INFO] [trainer.py:128]: Step  1600/5000 | Mean Loss (10): 2.3386 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:45] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_1600.pt
+[2026-10-26 01:01:46] [INFO] [trainer.py:128]: Step  1610/5000 | Mean Loss (10): 2.3895 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:46] [INFO] [trainer.py:128]: Step  1620/5000 | Mean Loss (10): 2.3664 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:46] [INFO] [trainer.py:128]: Step  1630/5000 | Mean Loss (10): 2.3560 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:46] [INFO] [trainer.py:128]: Step  1640/5000 | Mean Loss (10): 2.3847 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:47] [INFO] [trainer.py:128]: Step  1650/5000 | Mean Loss (10): 2.4258 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:47] [INFO] [trainer.py:128]: Step  1660/5000 | Mean Loss (10): 2.3353 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:47] [INFO] [trainer.py:128]: Step  1670/5000 | Mean Loss (10): 2.4306 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:47] [INFO] [trainer.py:128]: Step  1680/5000 | Mean Loss (10): 2.4587 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:48] [INFO] [trainer.py:128]: Step  1690/5000 | Mean Loss (10): 2.4060 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:48] [INFO] [trainer.py:128]: Step  1700/5000 | Mean Loss (10): 2.3714 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:48] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_1700.pt
+[2026-10-26 01:01:48] [INFO] [trainer.py:128]: Step  1710/5000 | Mean Loss (10): 2.4346 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:49] [INFO] [trainer.py:128]: Step  1720/5000 | Mean Loss (10): 2.4142 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:49] [INFO] [trainer.py:128]: Step  1730/5000 | Mean Loss (10): 2.3916 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:49] [INFO] [trainer.py:128]: Step  1740/5000 | Mean Loss (10): 2.4454 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:49] [INFO] [trainer.py:128]: Step  1750/5000 | Mean Loss (10): 2.4669 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:50] [INFO] [trainer.py:128]: Step  1760/5000 | Mean Loss (10): 2.4839 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:50] [INFO] [trainer.py:128]: Step  1770/5000 | Mean Loss (10): 2.4560 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:50] [INFO] [trainer.py:128]: Step  1780/5000 | Mean Loss (10): 2.4662 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:50] [INFO] [trainer.py:128]: Step  1790/5000 | Mean Loss (10): 2.4167 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:51] [INFO] [trainer.py:128]: Step  1800/5000 | Mean Loss (10): 2.5071 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:51] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_1800.pt
+[2026-10-26 01:01:51] [INFO] [trainer.py:128]: Step  1810/5000 | Mean Loss (10): 2.5051 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:51] [INFO] [trainer.py:128]: Step  1820/5000 | Mean Loss (10): 2.4352 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:51] [INFO] [trainer.py:128]: Step  1830/5000 | Mean Loss (10): 2.4658 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:52] [INFO] [trainer.py:128]: Step  1840/5000 | Mean Loss (10): 2.4654 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:52] [INFO] [trainer.py:128]: Step  1850/5000 | Mean Loss (10): 2.3500 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:52] [INFO] [trainer.py:128]: Step  1860/5000 | Mean Loss (10): 2.3854 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:52] [INFO] [trainer.py:128]: Step  1870/5000 | Mean Loss (10): 2.4075 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:53] [INFO] [trainer.py:128]: Step  1880/5000 | Mean Loss (10): 2.4250 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:53] [INFO] [trainer.py:128]: Step  1890/5000 | Mean Loss (10): 2.3794 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:53] [INFO] [trainer.py:128]: Step  1900/5000 | Mean Loss (10): 2.3824 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:53] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_1900.pt
+[2026-10-26 01:01:53] [INFO] [trainer.py:128]: Step  1910/5000 | Mean Loss (10): 2.3348 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:54] [INFO] [trainer.py:128]: Step  1920/5000 | Mean Loss (10): 2.2189 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:54] [INFO] [trainer.py:128]: Step  1930/5000 | Mean Loss (10): 2.4066 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:54] [INFO] [trainer.py:128]: Step  1940/5000 | Mean Loss (10): 2.4393 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:54] [INFO] [trainer.py:128]: Step  1950/5000 | Mean Loss (10): 2.3972 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:55] [INFO] [trainer.py:128]: Step  1960/5000 | Mean Loss (10): 2.3260 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:55] [INFO] [trainer.py:128]: Step  1970/5000 | Mean Loss (10): 2.3251 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:55] [INFO] [trainer.py:128]: Step  1980/5000 | Mean Loss (10): 2.5379 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:55] [INFO] [trainer.py:128]: Step  1990/5000 | Mean Loss (10): 2.4098 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:55] [INFO] [trainer.py:128]: Step  2000/5000 | Mean Loss (10): 2.4738 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:56] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_2000.pt
+[2026-10-26 01:01:56] [INFO] [trainer.py:128]: Step  2010/5000 | Mean Loss (10): 2.3636 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:56] [INFO] [trainer.py:128]: Step  2020/5000 | Mean Loss (10): 2.4052 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:56] [INFO] [trainer.py:128]: Step  2030/5000 | Mean Loss (10): 2.3572 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:56] [INFO] [trainer.py:128]: Step  2040/5000 | Mean Loss (10): 2.4288 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:57] [INFO] [trainer.py:128]: Step  2050/5000 | Mean Loss (10): 2.2154 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:57] [INFO] [trainer.py:128]: Step  2060/5000 | Mean Loss (10): 2.3556 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:57] [INFO] [trainer.py:128]: Step  2070/5000 | Mean Loss (10): 2.4134 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:57] [INFO] [trainer.py:128]: Step  2080/5000 | Mean Loss (10): 2.3492 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:58] [INFO] [trainer.py:128]: Step  2090/5000 | Mean Loss (10): 2.3655 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:58] [INFO] [trainer.py:128]: Step  2100/5000 | Mean Loss (10): 2.4644 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:58] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_2100.pt
+[2026-10-26 01:01:58] [INFO] [trainer.py:128]: Step  2110/5000 | Mean Loss (10): 2.2533 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:58] [INFO] [trainer.py:128]: Step  2120/5000 | Mean Loss (10): 2.3074 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:59] [INFO] [trainer.py:128]: Step  2130/5000 | Mean Loss (10): 2.2861 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:59] [INFO] [trainer.py:128]: Step  2140/5000 | Mean Loss (10): 2.3223 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:59] [INFO] [trainer.py:128]: Step  2150/5000 | Mean Loss (10): 2.3164 | GPU Mem: 173.9 MB
+[2026-10-26 01:01:59] [INFO] [trainer.py:128]: Step  2160/5000 | Mean Loss (10): 2.4712 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:00] [INFO] [trainer.py:128]: Step  2170/5000 | Mean Loss (10): 2.3680 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:00] [INFO] [trainer.py:128]: Step  2180/5000 | Mean Loss (10): 2.4111 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:00] [INFO] [trainer.py:128]: Step  2190/5000 | Mean Loss (10): 2.3268 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:00] [INFO] [trainer.py:128]: Step  2200/5000 | Mean Loss (10): 2.3597 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:00] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_2200.pt
+[2026-10-26 01:02:01] [INFO] [trainer.py:128]: Step  2210/5000 | Mean Loss (10): 2.3331 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:01] [INFO] [trainer.py:128]: Step  2220/5000 | Mean Loss (10): 2.3426 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:01] [INFO] [trainer.py:128]: Step  2230/5000 | Mean Loss (10): 2.3493 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:01] [INFO] [trainer.py:128]: Step  2240/5000 | Mean Loss (10): 2.3567 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:02] [INFO] [trainer.py:128]: Step  2250/5000 | Mean Loss (10): 2.3966 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:02] [INFO] [trainer.py:128]: Step  2260/5000 | Mean Loss (10): 2.3032 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:02] [INFO] [trainer.py:128]: Step  2270/5000 | Mean Loss (10): 2.4290 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:02] [INFO] [trainer.py:128]: Step  2280/5000 | Mean Loss (10): 2.3579 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:03] [INFO] [trainer.py:128]: Step  2290/5000 | Mean Loss (10): 2.2270 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:03] [INFO] [trainer.py:128]: Step  2300/5000 | Mean Loss (10): 2.3439 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:03] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_2300.pt
+[2026-10-26 01:02:03] [INFO] [trainer.py:128]: Step  2310/5000 | Mean Loss (10): 2.4186 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:04] [INFO] [trainer.py:128]: Step  2320/5000 | Mean Loss (10): 2.3565 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:04] [INFO] [trainer.py:128]: Step  2330/5000 | Mean Loss (10): 2.3093 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:04] [INFO] [trainer.py:128]: Step  2340/5000 | Mean Loss (10): 2.2222 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:05] [INFO] [trainer.py:128]: Step  2350/5000 | Mean Loss (10): 2.3496 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:05] [INFO] [trainer.py:128]: Step  2360/5000 | Mean Loss (10): 2.3279 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:05] [INFO] [trainer.py:128]: Step  2370/5000 | Mean Loss (10): 2.2752 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:05] [INFO] [trainer.py:128]: Step  2380/5000 | Mean Loss (10): 2.3336 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:06] [INFO] [trainer.py:128]: Step  2390/5000 | Mean Loss (10): 2.2516 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:06] [INFO] [trainer.py:128]: Step  2400/5000 | Mean Loss (10): 2.3473 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:06] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_2400.pt
+[2026-10-26 01:02:06] [INFO] [trainer.py:128]: Step  2410/5000 | Mean Loss (10): 2.3492 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:06] [INFO] [trainer.py:128]: Step  2420/5000 | Mean Loss (10): 2.3050 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:07] [INFO] [trainer.py:128]: Step  2430/5000 | Mean Loss (10): 2.2603 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:07] [INFO] [trainer.py:128]: Step  2440/5000 | Mean Loss (10): 2.3197 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:07] [INFO] [trainer.py:128]: Step  2450/5000 | Mean Loss (10): 2.1943 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:08] [INFO] [trainer.py:128]: Step  2460/5000 | Mean Loss (10): 2.4008 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:08] [INFO] [trainer.py:128]: Step  2470/5000 | Mean Loss (10): 2.2889 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:08] [INFO] [trainer.py:128]: Step  2480/5000 | Mean Loss (10): 2.4151 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:08] [INFO] [trainer.py:128]: Step  2490/5000 | Mean Loss (10): 2.2600 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:08] [INFO] [trainer.py:128]: Step  2500/5000 | Mean Loss (10): 2.2786 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:09] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_2500.pt
+[2026-10-26 01:02:09] [INFO] [trainer.py:128]: Step  2510/5000 | Mean Loss (10): 2.3311 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:09] [INFO] [trainer.py:128]: Step  2520/5000 | Mean Loss (10): 2.2805 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:09] [INFO] [trainer.py:128]: Step  2530/5000 | Mean Loss (10): 2.2775 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:10] [INFO] [trainer.py:128]: Step  2540/5000 | Mean Loss (10): 2.3270 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:10] [INFO] [trainer.py:128]: Step  2550/5000 | Mean Loss (10): 2.3999 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:10] [INFO] [trainer.py:128]: Step  2560/5000 | Mean Loss (10): 2.2391 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:11] [INFO] [trainer.py:128]: Step  2570/5000 | Mean Loss (10): 2.3006 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:11] [INFO] [trainer.py:128]: Step  2580/5000 | Mean Loss (10): 2.2316 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:11] [INFO] [trainer.py:128]: Step  2590/5000 | Mean Loss (10): 2.2864 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:11] [INFO] [trainer.py:128]: Step  2600/5000 | Mean Loss (10): 2.1426 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:11] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_2600.pt
+[2026-10-26 01:02:12] [INFO] [trainer.py:128]: Step  2610/5000 | Mean Loss (10): 2.2488 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:12] [INFO] [trainer.py:128]: Step  2620/5000 | Mean Loss (10): 2.4520 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:12] [INFO] [trainer.py:128]: Step  2630/5000 | Mean Loss (10): 2.2767 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:13] [INFO] [trainer.py:128]: Step  2640/5000 | Mean Loss (10): 2.2504 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:13] [INFO] [trainer.py:128]: Step  2650/5000 | Mean Loss (10): 2.2554 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:13] [INFO] [trainer.py:128]: Step  2660/5000 | Mean Loss (10): 2.4414 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:14] [INFO] [trainer.py:128]: Step  2670/5000 | Mean Loss (10): 2.1939 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:14] [INFO] [trainer.py:128]: Step  2680/5000 | Mean Loss (10): 2.2872 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:14] [INFO] [trainer.py:128]: Step  2690/5000 | Mean Loss (10): 2.2693 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:15] [INFO] [trainer.py:128]: Step  2700/5000 | Mean Loss (10): 2.2647 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:15] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_2700.pt
+[2026-10-26 01:02:15] [INFO] [trainer.py:128]: Step  2710/5000 | Mean Loss (10): 2.3455 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:15] [INFO] [trainer.py:128]: Step  2720/5000 | Mean Loss (10): 2.2221 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:16] [INFO] [trainer.py:128]: Step  2730/5000 | Mean Loss (10): 2.3728 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:16] [INFO] [trainer.py:128]: Step  2740/5000 | Mean Loss (10): 2.3527 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:16] [INFO] [trainer.py:128]: Step  2750/5000 | Mean Loss (10): 2.1611 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:16] [INFO] [trainer.py:128]: Step  2760/5000 | Mean Loss (10): 2.2884 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:17] [INFO] [trainer.py:128]: Step  2770/5000 | Mean Loss (10): 2.2178 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:17] [INFO] [trainer.py:128]: Step  2780/5000 | Mean Loss (10): 2.3072 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:17] [INFO] [trainer.py:128]: Step  2790/5000 | Mean Loss (10): 2.3580 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:18] [INFO] [trainer.py:128]: Step  2800/5000 | Mean Loss (10): 2.2424 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:18] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_2800.pt
+[2026-10-26 01:02:18] [INFO] [trainer.py:128]: Step  2810/5000 | Mean Loss (10): 2.2230 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:18] [INFO] [trainer.py:128]: Step  2820/5000 | Mean Loss (10): 2.2620 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:18] [INFO] [trainer.py:128]: Step  2830/5000 | Mean Loss (10): 2.3472 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:19] [INFO] [trainer.py:128]: Step  2840/5000 | Mean Loss (10): 2.3717 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:19] [INFO] [trainer.py:128]: Step  2850/5000 | Mean Loss (10): 2.2581 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:19] [INFO] [trainer.py:128]: Step  2860/5000 | Mean Loss (10): 2.2398 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:20] [INFO] [trainer.py:128]: Step  2870/5000 | Mean Loss (10): 2.3761 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:20] [INFO] [trainer.py:128]: Step  2880/5000 | Mean Loss (10): 2.3298 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:21] [INFO] [trainer.py:128]: Step  2890/5000 | Mean Loss (10): 2.2455 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:21] [INFO] [trainer.py:128]: Step  2900/5000 | Mean Loss (10): 2.1657 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:21] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_2900.pt
+[2026-10-26 01:02:22] [INFO] [trainer.py:128]: Step  2910/5000 | Mean Loss (10): 2.2674 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:22] [INFO] [trainer.py:128]: Step  2920/5000 | Mean Loss (10): 2.3016 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:22] [INFO] [trainer.py:128]: Step  2930/5000 | Mean Loss (10): 2.2049 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:23] [INFO] [trainer.py:128]: Step  2940/5000 | Mean Loss (10): 2.2717 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:23] [INFO] [trainer.py:128]: Step  2950/5000 | Mean Loss (10): 2.1967 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:24] [INFO] [trainer.py:128]: Step  2960/5000 | Mean Loss (10): 2.2799 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:24] [INFO] [trainer.py:128]: Step  2970/5000 | Mean Loss (10): 2.3100 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:25] [INFO] [trainer.py:128]: Step  2980/5000 | Mean Loss (10): 2.3644 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:25] [INFO] [trainer.py:128]: Step  2990/5000 | Mean Loss (10): 2.1916 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:26] [INFO] [trainer.py:128]: Step  3000/5000 | Mean Loss (10): 2.1976 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:26] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_3000.pt
+[2026-10-26 01:02:26] [INFO] [trainer.py:128]: Step  3010/5000 | Mean Loss (10): 2.2284 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:27] [INFO] [trainer.py:128]: Step  3020/5000 | Mean Loss (10): 2.3138 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:27] [INFO] [trainer.py:128]: Step  3030/5000 | Mean Loss (10): 2.2406 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:27] [INFO] [trainer.py:128]: Step  3040/5000 | Mean Loss (10): 2.0921 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:28] [INFO] [trainer.py:128]: Step  3050/5000 | Mean Loss (10): 2.1757 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:28] [INFO] [trainer.py:128]: Step  3060/5000 | Mean Loss (10): 2.2200 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:29] [INFO] [trainer.py:128]: Step  3070/5000 | Mean Loss (10): 2.2708 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:29] [INFO] [trainer.py:128]: Step  3080/5000 | Mean Loss (10): 2.2169 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:30] [INFO] [trainer.py:128]: Step  3090/5000 | Mean Loss (10): 2.2243 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:30] [INFO] [trainer.py:128]: Step  3100/5000 | Mean Loss (10): 2.1991 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:30] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_3100.pt
+[2026-10-26 01:02:31] [INFO] [trainer.py:128]: Step  3110/5000 | Mean Loss (10): 2.1294 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:31] [INFO] [trainer.py:128]: Step  3120/5000 | Mean Loss (10): 2.2006 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:32] [INFO] [trainer.py:128]: Step  3130/5000 | Mean Loss (10): 2.2835 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:32] [INFO] [trainer.py:128]: Step  3140/5000 | Mean Loss (10): 2.2392 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:32] [INFO] [trainer.py:128]: Step  3150/5000 | Mean Loss (10): 2.3466 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:33] [INFO] [trainer.py:128]: Step  3160/5000 | Mean Loss (10): 2.1311 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:33] [INFO] [trainer.py:128]: Step  3170/5000 | Mean Loss (10): 2.1818 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:34] [INFO] [trainer.py:128]: Step  3180/5000 | Mean Loss (10): 2.1980 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:34] [INFO] [trainer.py:128]: Step  3190/5000 | Mean Loss (10): 2.2119 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:35] [INFO] [trainer.py:128]: Step  3200/5000 | Mean Loss (10): 2.2182 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:35] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_3200.pt
+[2026-10-26 01:02:35] [INFO] [trainer.py:128]: Step  3210/5000 | Mean Loss (10): 2.2129 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:36] [INFO] [trainer.py:128]: Step  3220/5000 | Mean Loss (10): 2.1957 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:36] [INFO] [trainer.py:128]: Step  3230/5000 | Mean Loss (10): 2.1723 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:36] [INFO] [trainer.py:128]: Step  3240/5000 | Mean Loss (10): 2.2734 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:37] [INFO] [trainer.py:128]: Step  3250/5000 | Mean Loss (10): 2.2214 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:37] [INFO] [trainer.py:128]: Step  3260/5000 | Mean Loss (10): 2.3457 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:38] [INFO] [trainer.py:128]: Step  3270/5000 | Mean Loss (10): 2.1534 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:38] [INFO] [trainer.py:128]: Step  3280/5000 | Mean Loss (10): 2.3179 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:39] [INFO] [trainer.py:128]: Step  3290/5000 | Mean Loss (10): 2.2423 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:39] [INFO] [trainer.py:128]: Step  3300/5000 | Mean Loss (10): 2.3012 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:39] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_3300.pt
+[2026-10-26 01:02:40] [INFO] [trainer.py:128]: Step  3310/5000 | Mean Loss (10): 2.0862 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:40] [INFO] [trainer.py:128]: Step  3320/5000 | Mean Loss (10): 2.0688 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:40] [INFO] [trainer.py:128]: Step  3330/5000 | Mean Loss (10): 2.2442 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:41] [INFO] [trainer.py:128]: Step  3340/5000 | Mean Loss (10): 2.1967 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:41] [INFO] [trainer.py:128]: Step  3350/5000 | Mean Loss (10): 2.2952 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:42] [INFO] [trainer.py:128]: Step  3360/5000 | Mean Loss (10): 2.2532 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:42] [INFO] [trainer.py:128]: Step  3370/5000 | Mean Loss (10): 2.1774 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:43] [INFO] [trainer.py:128]: Step  3380/5000 | Mean Loss (10): 2.1822 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:43] [INFO] [trainer.py:128]: Step  3390/5000 | Mean Loss (10): 2.2886 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:43] [INFO] [trainer.py:128]: Step  3400/5000 | Mean Loss (10): 2.1786 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:44] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_3400.pt
+[2026-10-26 01:02:44] [INFO] [trainer.py:128]: Step  3410/5000 | Mean Loss (10): 2.0527 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:45] [INFO] [trainer.py:128]: Step  3420/5000 | Mean Loss (10): 2.3043 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:45] [INFO] [trainer.py:128]: Step  3430/5000 | Mean Loss (10): 2.1693 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:46] [INFO] [trainer.py:128]: Step  3440/5000 | Mean Loss (10): 2.2389 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:46] [INFO] [trainer.py:128]: Step  3450/5000 | Mean Loss (10): 2.2293 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:46] [INFO] [trainer.py:128]: Step  3460/5000 | Mean Loss (10): 2.1871 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:47] [INFO] [trainer.py:128]: Step  3470/5000 | Mean Loss (10): 2.2701 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:47] [INFO] [trainer.py:128]: Step  3480/5000 | Mean Loss (10): 2.0902 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:48] [INFO] [trainer.py:128]: Step  3490/5000 | Mean Loss (10): 2.1655 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:48] [INFO] [trainer.py:128]: Step  3500/5000 | Mean Loss (10): 2.1355 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:48] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_3500.pt
+[2026-10-26 01:02:49] [INFO] [trainer.py:128]: Step  3510/5000 | Mean Loss (10): 2.2151 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:49] [INFO] [trainer.py:128]: Step  3520/5000 | Mean Loss (10): 2.1981 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:50] [INFO] [trainer.py:128]: Step  3530/5000 | Mean Loss (10): 2.1563 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:50] [INFO] [trainer.py:128]: Step  3540/5000 | Mean Loss (10): 2.1377 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:50] [INFO] [trainer.py:128]: Step  3550/5000 | Mean Loss (10): 2.1302 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:51] [INFO] [trainer.py:128]: Step  3560/5000 | Mean Loss (10): 2.2404 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:51] [INFO] [trainer.py:128]: Step  3570/5000 | Mean Loss (10): 2.1442 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:52] [INFO] [trainer.py:128]: Step  3580/5000 | Mean Loss (10): 2.1845 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:52] [INFO] [trainer.py:128]: Step  3590/5000 | Mean Loss (10): 2.2541 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:53] [INFO] [trainer.py:128]: Step  3600/5000 | Mean Loss (10): 2.0721 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:53] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_3600.pt
+[2026-10-26 01:02:53] [INFO] [trainer.py:128]: Step  3610/5000 | Mean Loss (10): 2.2170 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:54] [INFO] [trainer.py:128]: Step  3620/5000 | Mean Loss (10): 2.1386 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:54] [INFO] [trainer.py:128]: Step  3630/5000 | Mean Loss (10): 2.2907 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:54] [INFO] [trainer.py:128]: Step  3640/5000 | Mean Loss (10): 2.2413 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:55] [INFO] [trainer.py:128]: Step  3650/5000 | Mean Loss (10): 2.2227 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:55] [INFO] [trainer.py:128]: Step  3660/5000 | Mean Loss (10): 2.1161 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:56] [INFO] [trainer.py:128]: Step  3670/5000 | Mean Loss (10): 2.1923 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:56] [INFO] [trainer.py:128]: Step  3680/5000 | Mean Loss (10): 2.1877 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:57] [INFO] [trainer.py:128]: Step  3690/5000 | Mean Loss (10): 2.2462 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:57] [INFO] [trainer.py:128]: Step  3700/5000 | Mean Loss (10): 2.1855 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:57] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_3700.pt
+[2026-10-26 01:02:58] [INFO] [trainer.py:128]: Step  3710/5000 | Mean Loss (10): 2.1359 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:58] [INFO] [trainer.py:128]: Step  3720/5000 | Mean Loss (10): 2.1715 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:58] [INFO] [trainer.py:128]: Step  3730/5000 | Mean Loss (10): 2.2117 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:59] [INFO] [trainer.py:128]: Step  3740/5000 | Mean Loss (10): 2.2186 | GPU Mem: 173.9 MB
+[2026-10-26 01:02:59] [INFO] [trainer.py:128]: Step  3750/5000 | Mean Loss (10): 2.1301 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:00] [INFO] [trainer.py:128]: Step  3760/5000 | Mean Loss (10): 2.1069 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:00] [INFO] [trainer.py:128]: Step  3770/5000 | Mean Loss (10): 2.0871 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:01] [INFO] [trainer.py:128]: Step  3780/5000 | Mean Loss (10): 2.1803 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:01] [INFO] [trainer.py:128]: Step  3790/5000 | Mean Loss (10): 2.2138 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:02] [INFO] [trainer.py:128]: Step  3800/5000 | Mean Loss (10): 2.1414 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:02] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_3800.pt
+[2026-10-26 01:03:02] [INFO] [trainer.py:128]: Step  3810/5000 | Mean Loss (10): 2.2526 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:03] [INFO] [trainer.py:128]: Step  3820/5000 | Mean Loss (10): 2.1387 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:03] [INFO] [trainer.py:128]: Step  3830/5000 | Mean Loss (10): 2.1158 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:03] [INFO] [trainer.py:128]: Step  3840/5000 | Mean Loss (10): 2.1852 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:04] [INFO] [trainer.py:128]: Step  3850/5000 | Mean Loss (10): 2.0932 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:04] [INFO] [trainer.py:128]: Step  3860/5000 | Mean Loss (10): 2.1667 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:05] [INFO] [trainer.py:128]: Step  3870/5000 | Mean Loss (10): 2.0551 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:05] [INFO] [trainer.py:128]: Step  3880/5000 | Mean Loss (10): 2.1282 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:05] [INFO] [trainer.py:128]: Step  3890/5000 | Mean Loss (10): 2.2250 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:06] [INFO] [trainer.py:128]: Step  3900/5000 | Mean Loss (10): 2.2151 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:06] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_3900.pt
+[2026-10-26 01:03:07] [INFO] [trainer.py:128]: Step  3910/5000 | Mean Loss (10): 2.2302 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:07] [INFO] [trainer.py:128]: Step  3920/5000 | Mean Loss (10): 2.0816 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:07] [INFO] [trainer.py:128]: Step  3930/5000 | Mean Loss (10): 2.0270 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:08] [INFO] [trainer.py:128]: Step  3940/5000 | Mean Loss (10): 2.1959 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:08] [INFO] [trainer.py:128]: Step  3950/5000 | Mean Loss (10): 2.0505 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:09] [INFO] [trainer.py:128]: Step  3960/5000 | Mean Loss (10): 2.3142 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:09] [INFO] [trainer.py:128]: Step  3970/5000 | Mean Loss (10): 2.0846 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:10] [INFO] [trainer.py:128]: Step  3980/5000 | Mean Loss (10): 2.0648 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:10] [INFO] [trainer.py:128]: Step  3990/5000 | Mean Loss (10): 2.3611 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:10] [INFO] [trainer.py:128]: Step  4000/5000 | Mean Loss (10): 2.0444 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:11] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_4000.pt
+[2026-10-26 01:03:11] [INFO] [trainer.py:128]: Step  4010/5000 | Mean Loss (10): 2.1357 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:11] [INFO] [trainer.py:128]: Step  4020/5000 | Mean Loss (10): 1.9965 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:12] [INFO] [trainer.py:128]: Step  4030/5000 | Mean Loss (10): 2.1181 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:12] [INFO] [trainer.py:128]: Step  4040/5000 | Mean Loss (10): 1.9390 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:13] [INFO] [trainer.py:128]: Step  4050/5000 | Mean Loss (10): 2.0864 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:13] [INFO] [trainer.py:128]: Step  4060/5000 | Mean Loss (10): 2.1461 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:14] [INFO] [trainer.py:128]: Step  4070/5000 | Mean Loss (10): 2.0347 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:14] [INFO] [trainer.py:128]: Step  4080/5000 | Mean Loss (10): 2.0457 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:14] [INFO] [trainer.py:128]: Step  4090/5000 | Mean Loss (10): 2.1021 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:15] [INFO] [trainer.py:128]: Step  4100/5000 | Mean Loss (10): 2.2242 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:15] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_4100.pt
+[2026-10-26 01:03:15] [INFO] [trainer.py:128]: Step  4110/5000 | Mean Loss (10): 2.1381 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:16] [INFO] [trainer.py:128]: Step  4120/5000 | Mean Loss (10): 2.1685 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:16] [INFO] [trainer.py:128]: Step  4130/5000 | Mean Loss (10): 2.0675 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:17] [INFO] [trainer.py:128]: Step  4140/5000 | Mean Loss (10): 2.0484 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:17] [INFO] [trainer.py:128]: Step  4150/5000 | Mean Loss (10): 2.2274 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:18] [INFO] [trainer.py:128]: Step  4160/5000 | Mean Loss (10): 2.1030 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:18] [INFO] [trainer.py:128]: Step  4170/5000 | Mean Loss (10): 2.0797 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:18] [INFO] [trainer.py:128]: Step  4180/5000 | Mean Loss (10): 2.1251 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:19] [INFO] [trainer.py:128]: Step  4190/5000 | Mean Loss (10): 2.1245 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:19] [INFO] [trainer.py:128]: Step  4200/5000 | Mean Loss (10): 2.1281 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:20] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_4200.pt
+[2026-10-26 01:03:20] [INFO] [trainer.py:128]: Step  4210/5000 | Mean Loss (10): 2.1258 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:20] [INFO] [trainer.py:128]: Step  4220/5000 | Mean Loss (10): 2.0368 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:21] [INFO] [trainer.py:128]: Step  4230/5000 | Mean Loss (10): 2.2410 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:21] [INFO] [trainer.py:128]: Step  4240/5000 | Mean Loss (10): 2.1291 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:22] [INFO] [trainer.py:128]: Step  4250/5000 | Mean Loss (10): 2.3023 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:22] [INFO] [trainer.py:128]: Step  4260/5000 | Mean Loss (10): 2.0140 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:23] [INFO] [trainer.py:128]: Step  4270/5000 | Mean Loss (10): 2.1080 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:23] [INFO] [trainer.py:128]: Step  4280/5000 | Mean Loss (10): 1.9845 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:24] [INFO] [trainer.py:128]: Step  4290/5000 | Mean Loss (10): 2.1138 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:24] [INFO] [trainer.py:128]: Step  4300/5000 | Mean Loss (10): 2.1590 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:24] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_4300.pt
+[2026-10-26 01:03:25] [INFO] [trainer.py:128]: Step  4310/5000 | Mean Loss (10): 2.1570 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:25] [INFO] [trainer.py:128]: Step  4320/5000 | Mean Loss (10): 2.2142 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:26] [INFO] [trainer.py:128]: Step  4330/5000 | Mean Loss (10): 2.1831 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:26] [INFO] [trainer.py:128]: Step  4340/5000 | Mean Loss (10): 2.1611 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:26] [INFO] [trainer.py:128]: Step  4350/5000 | Mean Loss (10): 2.1334 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:27] [INFO] [trainer.py:128]: Step  4360/5000 | Mean Loss (10): 2.1465 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:27] [INFO] [trainer.py:128]: Step  4370/5000 | Mean Loss (10): 2.0355 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:28] [INFO] [trainer.py:128]: Step  4380/5000 | Mean Loss (10): 2.2119 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:28] [INFO] [trainer.py:128]: Step  4390/5000 | Mean Loss (10): 1.9372 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:29] [INFO] [trainer.py:128]: Step  4400/5000 | Mean Loss (10): 2.0694 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:29] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_4400.pt
+[2026-10-26 01:03:29] [INFO] [trainer.py:128]: Step  4410/5000 | Mean Loss (10): 2.1653 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:30] [INFO] [trainer.py:128]: Step  4420/5000 | Mean Loss (10): 2.0065 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:30] [INFO] [trainer.py:128]: Step  4430/5000 | Mean Loss (10): 2.0477 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:30] [INFO] [trainer.py:128]: Step  4440/5000 | Mean Loss (10): 2.1331 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:31] [INFO] [trainer.py:128]: Step  4450/5000 | Mean Loss (10): 2.2992 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:31] [INFO] [trainer.py:128]: Step  4460/5000 | Mean Loss (10): 2.2265 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:32] [INFO] [trainer.py:128]: Step  4470/5000 | Mean Loss (10): 2.0657 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:32] [INFO] [trainer.py:128]: Step  4480/5000 | Mean Loss (10): 2.1274 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:33] [INFO] [trainer.py:128]: Step  4490/5000 | Mean Loss (10): 2.0864 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:33] [INFO] [trainer.py:128]: Step  4500/5000 | Mean Loss (10): 2.2654 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:33] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_4500.pt
+[2026-10-26 01:03:33] [INFO] [trainer.py:128]: Step  4510/5000 | Mean Loss (10): 2.1472 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:34] [INFO] [trainer.py:128]: Step  4520/5000 | Mean Loss (10): 2.1346 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:35] [INFO] [trainer.py:128]: Step  4530/5000 | Mean Loss (10): 2.0533 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:35] [INFO] [trainer.py:128]: Step  4540/5000 | Mean Loss (10): 2.0662 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:35] [INFO] [trainer.py:128]: Step  4550/5000 | Mean Loss (10): 2.1058 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:36] [INFO] [trainer.py:128]: Step  4560/5000 | Mean Loss (10): 2.1134 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:37] [INFO] [trainer.py:128]: Step  4570/5000 | Mean Loss (10): 2.1857 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:37] [INFO] [trainer.py:128]: Step  4580/5000 | Mean Loss (10): 2.0682 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:38] [INFO] [trainer.py:128]: Step  4590/5000 | Mean Loss (10): 2.0153 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:38] [INFO] [trainer.py:128]: Step  4600/5000 | Mean Loss (10): 2.2533 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:38] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_4600.pt
+[2026-10-26 01:03:39] [INFO] [trainer.py:128]: Step  4610/5000 | Mean Loss (10): 1.9775 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:39] [INFO] [trainer.py:128]: Step  4620/5000 | Mean Loss (10): 2.0999 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:40] [INFO] [trainer.py:128]: Step  4630/5000 | Mean Loss (10): 2.0563 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:40] [INFO] [trainer.py:128]: Step  4640/5000 | Mean Loss (10): 2.0873 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:41] [INFO] [trainer.py:128]: Step  4650/5000 | Mean Loss (10): 2.1587 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:41] [INFO] [trainer.py:128]: Step  4660/5000 | Mean Loss (10): 2.3123 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:42] [INFO] [trainer.py:128]: Step  4670/5000 | Mean Loss (10): 2.1097 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:42] [INFO] [trainer.py:128]: Step  4680/5000 | Mean Loss (10): 2.0618 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:43] [INFO] [trainer.py:128]: Step  4690/5000 | Mean Loss (10): 2.0913 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:43] [INFO] [trainer.py:128]: Step  4700/5000 | Mean Loss (10): 2.0992 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:43] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_4700.pt
+[2026-10-26 01:03:44] [INFO] [trainer.py:128]: Step  4710/5000 | Mean Loss (10): 2.0163 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:44] [INFO] [trainer.py:128]: Step  4720/5000 | Mean Loss (10): 1.9429 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:45] [INFO] [trainer.py:128]: Step  4730/5000 | Mean Loss (10): 2.1292 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:45] [INFO] [trainer.py:128]: Step  4740/5000 | Mean Loss (10): 2.0230 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:46] [INFO] [trainer.py:128]: Step  4750/5000 | Mean Loss (10): 2.1274 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:46] [INFO] [trainer.py:128]: Step  4760/5000 | Mean Loss (10): 2.1596 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:47] [INFO] [trainer.py:128]: Step  4770/5000 | Mean Loss (10): 1.9422 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:47] [INFO] [trainer.py:128]: Step  4780/5000 | Mean Loss (10): 2.2095 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:48] [INFO] [trainer.py:128]: Step  4790/5000 | Mean Loss (10): 2.1643 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:48] [INFO] [trainer.py:128]: Step  4800/5000 | Mean Loss (10): 2.1044 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:48] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_4800.pt
+[2026-10-26 01:03:49] [INFO] [trainer.py:128]: Step  4810/5000 | Mean Loss (10): 2.0626 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:49] [INFO] [trainer.py:128]: Step  4820/5000 | Mean Loss (10): 2.2396 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:49] [INFO] [trainer.py:128]: Step  4830/5000 | Mean Loss (10): 2.1584 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:50] [INFO] [trainer.py:128]: Step  4840/5000 | Mean Loss (10): 2.0830 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:50] [INFO] [trainer.py:128]: Step  4850/5000 | Mean Loss (10): 2.1302 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:51] [INFO] [trainer.py:128]: Step  4860/5000 | Mean Loss (10): 2.1181 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:51] [INFO] [trainer.py:128]: Step  4870/5000 | Mean Loss (10): 2.1353 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:52] [INFO] [trainer.py:128]: Step  4880/5000 | Mean Loss (10): 1.9714 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:52] [INFO] [trainer.py:128]: Step  4890/5000 | Mean Loss (10): 2.0601 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:53] [INFO] [trainer.py:128]: Step  4900/5000 | Mean Loss (10): 2.0138 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:53] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_4900.pt
+[2026-10-26 01:03:53] [INFO] [trainer.py:128]: Step  4910/5000 | Mean Loss (10): 2.1335 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:54] [INFO] [trainer.py:128]: Step  4920/5000 | Mean Loss (10): 2.1414 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:54] [INFO] [trainer.py:128]: Step  4930/5000 | Mean Loss (10): 2.1405 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:55] [INFO] [trainer.py:128]: Step  4940/5000 | Mean Loss (10): 2.1397 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:55] [INFO] [trainer.py:128]: Step  4950/5000 | Mean Loss (10): 2.1598 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:56] [INFO] [trainer.py:128]: Step  4960/5000 | Mean Loss (10): 2.1176 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:56] [INFO] [trainer.py:128]: Step  4970/5000 | Mean Loss (10): 2.1449 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:57] [INFO] [trainer.py:128]: Step  4980/5000 | Mean Loss (10): 2.1003 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:57] [INFO] [trainer.py:128]: Step  4990/5000 | Mean Loss (10): 2.0932 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:58] [INFO] [trainer.py:128]: Step  5000/5000 | Mean Loss (10): 2.0113 | GPU Mem: 173.9 MB
+[2026-10-26 01:03:58] [INFO] [trainer.py:153]: Checkpoint saved: checkpoints\spectrum_molecule_step_5000.pt
+[2026-10-26 01:03:58] [INFO] [trainer.py:170]: Training completed in 162.8s. Total steps: 5000

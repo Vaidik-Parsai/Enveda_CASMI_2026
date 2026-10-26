@@ -1,0 +1,51 @@
+# Enveda CASMI 2026 Default Configuration
+
+data:
+  train_path: "C:/Users/vaidi/.cache/kagglehub/competitions/enveda-CASMI26-molecule-id-mass-spectra/train.parquet"
+  test_path: "C:/Users/vaidi/.cache/kagglehub/competitions/enveda-CASMI26-molecule-id-mass-spectra/test.parquet"
+  cache_dir: "data/cache"
+  split_file: "data/cache/group_split.json"
+  meta_preprocessor_path: "data/cache/meta_preprocessor.joblib"
+  val_fraction: 0.05
+  seed: 42
+  
+  # Spectrum feature parameters
+  spectrum_bin_size: 0.1
+  spectrum_max_mz: 1000.0
+  spectrum_num_bins: 10000
+  spectrum_threshold: 0.01
+  spectrum_top_n: 128
+  
+  # Molecule feature parameters
+  fingerprint_radius: 2
+  fingerprint_n_bits: 2048
+
+model:
+  spectrum_dim: 10000
+  metadata_dim: 130
+  fingerprint_dim: 2048
+  embedding_dim: 128
+  dropout_1: 0.2
+  dropout_2: 0.1
+  temperature: 0.07
+
+training:
+  batch_size: 128
+  val_batch_size: 64
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  max_steps: 1000
+  max_grad_norm: 1.0
+  mixed_precision: true
+  device: "cuda"
+  num_workers: 0  # 0 default for Windows stability
+  checkpoint_interval: 500
+  eval_interval: 200
+  log_interval: 10
+  output_dir: "outputs"
+  checkpoint_dir: "checkpoints"
+
+evaluation:
+  batch_size: 64
+  candidate_chunk_size: 10000
+  top_k: 25
