@@ -1,4 +1,8 @@
-venv
-
+venv/
 checkpoints/
+__pycache__/
+*.py[cod]
+*.pyo
+data/cache/
+outputs/
 
