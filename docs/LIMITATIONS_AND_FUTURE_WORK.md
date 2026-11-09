@@ -71,3 +71,4 @@ This provides robust soft-mass filtering even when experimental adduct metadata 
 In industrial search systems (e.g., web search and e-commerce), two-stage retrieval is standard:
 1. **Stage 1 (Bi-Encoder):** Retrieve the top $K = 100$ candidate molecules in $< 10\text{ ms}$ using our dual-tower model and mass filter.
 2. **Stage 2 (Cross-Encoder):** Pass the top 100 pairs through an expressive cross-attention network that explicitly models the interaction between individual fragment peaks and molecular substructure graphs, determining whether predicted *in silico* bond breakages match the observed peaks.
+

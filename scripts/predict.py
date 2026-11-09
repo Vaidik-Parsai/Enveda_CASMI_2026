@@ -45,7 +45,7 @@ from enveda.utils import setup_logger
 def parse_args():
     parser = argparse.ArgumentParser(description="Predict Top Candidates for Test Molecules")
     parser.add_argument("--config", type=str, default="configs/default.yaml", help="Path to config file")
-    parser.add_argument("--checkpoint", type=str, default="checkpoints/best_retrieval_model.pt", help="Checkpoint path")
+    parser.add_argument("--checkpoint", type=str, default="checkpoints/spectrum_molecule_step_5000.pt", help="Checkpoint path")
     parser.add_argument("--candidate_dir", type=str, default="outputs/candidate_bank", help="Path to candidate bank")
     parser.add_argument("--test_path", type=str, default=None, help="Path to test.parquet (optional override)")
     parser.add_argument("--output_csv", type=str, default="outputs/submission_top25.csv", help="Output CSV path")
@@ -238,12 +238,23 @@ def main():
                 sorted_cands = sorted(rrf_scores.items(), key=lambda x: x[1], reverse=True)[:args.top_k]
                 top_indices = [c_i for c_i, _ in sorted_cands]
 
-            pred_smiles = [candidate_smiles[idx] for idx in top_indices]
+            # Deduplicate while preserving rank order
+            seen_cands = set()
+            unique_top_indices = []
+            for idx in top_indices:
+                smi = candidate_smiles[idx]
+                if smi not in seen_cands:
+                    seen_cands.add(smi)
+                    unique_top_indices.append(idx)
+                if len(unique_top_indices) == args.top_k:
+                    break
 
-            # Format space-delimited string
+            pred_smiles = [candidate_smiles[idx] for idx in unique_top_indices]
+
+            # Format semicolon-delimited string matching official competition sample_submission.csv
             records.append({
                 "molecule_id": m_id,
-                "top_candidates": " ".join(pred_smiles),
+                "smiles": ";".join(pred_smiles),
             })
 
     out_df = pd.DataFrame(records)
@@ -254,12 +265,17 @@ def main():
     # Strict submission integrity verification
     assert len(out_df) == num_test_molecules, f"Row count {len(out_df)} != expected {num_test_molecules}"
     assert out_df["molecule_id"].nunique() == num_test_molecules, "Duplicate molecule IDs detected!"
-    assert out_df["top_candidates"].isna().sum() == 0, "Missing predictions detected!"
+    assert out_df["smiles"].isna().sum() == 0, "Missing predictions detected!"
 
-    # Verify each row has exactly 25 SMILES
+    cand_smiles_set = set(candidate_smiles)
+
+    # Verify each row has exactly 25 semicolon-delimited SMILES from candidate bank
     for idx, row in out_df.iterrows():
-        preds = row["top_candidates"].split()
+        preds = row["smiles"].split(";")
         assert len(preds) == args.top_k, f"Row {idx} has {len(preds)} candidates, expected {args.top_k}"
+        assert len(set(preds)) == len(preds), f"Row {idx} has duplicate candidates!"
+        for p in preds:
+            assert p in cand_smiles_set, f"Predicted SMILES {p[:20]}... not in candidate bank!"
 
     logger.info("=" * 70)
     logger.info("SUBMISSION INTEGRITY VERIFICATION SUCCESSFUL")
@@ -268,8 +284,8 @@ def main():
     logger.info(f"  Candidates per row:    {args.top_k}")
     logger.info(f"  Output saved to:       {out_csv}")
 
-    # Also save as submission_test.csv for convenience
-    copy_path = Path("outputs/submission_test.csv")
+    # Also mirror to outputs/submission.csv for convenience
+    copy_path = Path("outputs/submission.csv")
     out_df.to_csv(copy_path, index=False)
     logger.info(f"  Mirrored to:           {copy_path}")
 

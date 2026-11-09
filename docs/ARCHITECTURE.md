@@ -165,3 +165,4 @@ The primary ranking score for candidate $c$ with respect to molecule $m$ is the 
 $$S_{\text{agg}}(m, c) = \frac{1}{|S_m|} \sum_{s \in S_m} S_{\text{combined}}(s, c)$$
 
 Candidates are sorted in descending order of $S_{\text{agg}}(m, c)$, and the top 25 candidate SMILES strings are outputted.
+

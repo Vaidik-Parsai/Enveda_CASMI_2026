@@ -4,22 +4,31 @@
 [![PyTorch 2.0+](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 [![RDKit](https://img.shields.io/badge/RDKit-2023.09+-green.svg)](https://www.rdkit.org/)
 [![Tests Passing](https://img.shields.io/badge/tests-32%2F32%20passing-brightgreen.svg)](tests/)
-[![MRR@25 Champion](https://img.shields.io/badge/Champion%20MRR@25-0.2686-gold.svg)](checkpoints/)
+[![MRR@25 Champion](https://img.shields.io/badge/Official%20Champion%20MRR@25-0.2686-gold.svg)](docs/CHAMPION_MODEL.md)
 [![Recall@25 Record](https://img.shields.io/badge/Record%20Recall@25-70.50%25-brightgreen.svg)](docs/PHASE_6B_RUN_C_RESULTS.md)
 
 Production-grade, modular, and memory-efficient deep learning pipeline for the **Enveda CASMI 2026** competition: identifying 2D molecular structures from experimental tandem mass spectrometry ($\text{MS/MS}$) data.
 
 ---
 
-## 1. Executive Summary & Benchmark Highlights
+## 1. Executive Summary & Official Champion Benchmark
 
 In the Enveda CASMI 2026 challenge, algorithms must identify the true chemical structure for unknown molecules from their experimental mass spectra, selecting from an open candidate database of **277,566 candidate SMILES**.
 
-### Key System Achievements
-* **Official Champion Checkpoint:** `checkpoints/spectrum_molecule_step_5000.pt` achieves **MRR@25 = 0.2686**, **Recall@1 = 16.00%**, and **Recall@25 = 69.75%** on 400 held-out validation molecules (17,267 spectra) partitioned strictly by molecular scaffold (`inchikey14`).
+### Official Champion Benchmark
+* **Champion Model Checkpoint:** [`checkpoints/spectrum_molecule_step_5000.pt`](docs/CHAMPION_MODEL.md)
+* **Primary Competition Metric:** **MRR@25 = 0.2686**
+* **Validation Performance (400 Held-Out Molecules / 17,267 Spectra):**
+  * **Recall@1:** **16.00%**
+  * **Recall@5:** **40.00%**
+  * **Recall@10:** **50.50%**
+  * **Recall@25:** **69.75%**
+  * **Mean Rank:** **12.89** | **Median Rank:** **10.0**
+  * **Target Survival Rate:** **98.00%** ($\pm 50\text{ ppm}$ consensus neutral mass ceiling)
+  * **Effective Rank ($\text{Rank}_{\text{eff}}$):** **70.57** (Optimal representation isotropy)
 * **Physics-Informed Mass Scoring Breakthrough:** Combining dual-tower neural cosine similarity with Gaussian soft precursor neutral mass scoring ($\sigma = 20\text{ ppm}$) improved MRR@25 from **0.0006 to 0.2686** (**+44,667% relative improvement**).
-* **New Project Record for Candidate Coverage:** In Phase 6B Run C, chemistry-conditioned hard-negative training pushed **Recall@25 to an all-time record 70.50%**, with **Target Survival Rate reaching 98.00%**.
-* **Zero Leakage & Reproducibility:** 100% deterministic scaffold grouping, strict candidate identity masking, AMP mixed-precision training (`init_scale=8192.0`), and **32/32 passing unit tests**.
+* **New Project Record for Candidate Coverage:** In Phase 6B Run C, chemistry-conditioned hard-negative training pushed **Recall@25 to an all-time record 70.50%**.
+* **Zero Leakage & Reproducibility:** 100% deterministic scaffold grouping on InChIKey14, strict candidate identity masking, AMP mixed-precision training (`init_scale=8192.0`), and **32/32 passing unit tests**.
 
 ---
 
@@ -90,28 +99,40 @@ All evaluations are conducted against the full **277,566 candidate SMILES bank**
 | **Phase 6B Run A (Step 5,000)** | Cosine LR Warmup Baseline | 0.2573 | 15.00% | 36.75% | **51.50%** | 67.75% | 98.00% | 66.1 |
 | **Phase 6B Run C (Step 2,000)** | MIL-NCE + Chemistry Negatives | 0.2525 | 14.00% | 37.25% | **51.50%** | **70.50%** | **98.00%** | 63.3 |
 
-### Benchmark Definitions
+### Metric Definitions (Audited in `docs/CHAMPION_MODEL.md`)
 * **Target Survival Rate (98.00%):** The proportion of true target molecules whose monoisotopic neutral mass falls within the candidate pool's consensus neutral mass tolerance ($\pm 50\text{ ppm}$). This represents the theoretical upper-bound ceiling for mass-filtered retrieval.
-* **Recall@25 (70.50%):** The proportion of true target molecules successfully retrieved and ranked inside the top 25 candidates by our dual-tower scoring engine.
+* **Recall@25 (70.50% Record):** The proportion of true target molecules successfully retrieved and ranked inside the top 25 candidates by our dual-tower scoring engine.
+
+### Data Utilisation Provenance (Audited in `docs/DATA_UTILIZATION_AUDIT.md`)
+* **Total Training Split Rows:** 2,409,110 spectra.
+* **Presentations Consumed in 5,000 Steps:** 640,000 spectra (**0.266 epochs**, **26.57%** of training split, representing 103,220 unique molecules).
+* **Sample Efficiency:** Achieving MRR@25 = 0.2686 on just 0.27 epochs highlights the high sample efficiency of the dual-tower architecture.
 
 ---
 
-## 4. Repository Structure
+## 4. Documentation Map
+
+| Document | Purpose & Key Takeaways |
+|---|---|
+| [`docs/CHAMPION_MODEL.md`](docs/CHAMPION_MODEL.md) | **Official Champion Specification:** Exact weights, hyperparameters, metric definitions, and rejection criteria for alternative runs. |
+| [`docs/DATA_UTILIZATION_AUDIT.md`](docs/DATA_UTILIZATION_AUDIT.md) | **Data Ingestion Audit:** Demonstrates that 640,000 unique presentations (26.57% of split) were consumed across 103,220 unique molecules. |
+| [`docs/TEST_DATA_AUDIT.md`](docs/TEST_DATA_AUDIT.md) | **Competition Test Exploration:** Schema audit of 1,213 test spectra across 400 query molecules, adduct distributions, and zero-null verification. |
+| [`docs/TEST_INFERENCE_AND_SUBMISSION.md`](docs/TEST_INFERENCE_AND_SUBMISSION.md) | **Inference & Submission Guide:** 400 molecules $\times$ 25 semicolon-delimited SMILES verified against competition sample format. |
+| [`docs/FINAL_REPOSITORY_AUDIT.md`](docs/FINAL_REPOSITORY_AUDIT.md) | **Full Repository Inventory:** 12-category structural audit of every file, dependency references, and cleanup strategy. |
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | **System Architecture:** Mathematical formulation of encoders, binning, metadata scaling, mass filtering, and Mermaid diagrams. |
+| [`docs/EXPERIMENTS.md`](docs/EXPERIMENTS.md) | **Experimental Progression:** Detailed history from Phase 1 through Phase 6B, ablation benchmarks, and $\sigma$ parameter tuning. |
+| [`docs/INTERVIEW_GUIDE.md`](docs/INTERVIEW_GUIDE.md) | **Technical Interview Guide:** 18 multi-level questions answered at intuitive, technical, and applied levels. |
+| [`docs/LIMITATIONS_AND_FUTURE_WORK.md`](docs/LIMITATIONS_AND_FUTURE_WORK.md) | **Limitations & Research Directions:** Sample size confidence bounds, closed library constraints, and proposed GNN/Transformer architectures. |
+
+---
+
+## 5. Repository Structure
 
 ```text
 Enveda CASMI/
 ├── configs/
 │   └── default.yaml                 # Centralized configuration (paths, hyperparams)
-├── docs/
-│   ├── ARCHITECTURE.md              # Deep technical design & Mermaid pipeline diagrams
-│   ├── EXPERIMENTS.md               # Empirical progression, ablations & checkpoint benchmarks
-│   ├── INTERVIEW_GUIDE.md           # 18 multi-level technical interview questions & answers
-│   ├── LIMITATIONS_AND_FUTURE_WORK.md# Statistical bounds, vulnerabilities & future research
-│   ├── METRICS_AUDIT.md             # Truncated MRR@25 audit & mathematical definitions
-│   ├── PHASE_6A_TRAINING_AUDIT.md   # Diagnosis of dimensional collapse & negative starvation
-│   ├── PHASE_6B_EXPERIMENT_DESIGN.md# Controlled 4-arm experiment protocol
-│   ├── PHASE_6B_RUN_A_RESULTS.md    # Cosine scheduler baseline results
-│   └── PHASE_6B_RUN_C_RESULTS.md    # Chemistry-aware negative training report
+├── docs/                            # Complete technical documentation suite (16 reports)
 ├── src/
 │   └── enveda/
 │       ├── config.py                # Configuration loader
@@ -139,11 +160,11 @@ Enveda CASMI/
 │           ├── logging.py           # Dual console & file logger
 │           └── reproducibility.py   # Deterministic seed management
 ├── scripts/
-│   ├── train_phase6b.py             # Controlled Phase 6B multi-arm training runner
-│   ├── evaluate_phase6b_run_c.py    # Complete Run C evaluation over 277k candidate bank
-│   ├── run_mass_ablation_and_step_eval.py # Controlled ablation benchmark runner
-│   ├── build_candidate_bank.py      # Precompute offline candidate embeddings & masses
-│   └── predict.py                   # Generate Top-25 test submission file
+│   ├── predict.py                   # Master test prediction & submission generator
+│   ├── evaluate.py                  # Chunked evaluation on validation queries
+│   ├── train_phase6b.py             # Phase 6B controlled experiment runner
+│   ├── build_candidate_bank.py      # Precompute candidate embeddings & neutral masses
+│   └── run_mass_ablation_and_step_eval.py # Ablation benchmark runner
 ├── tests/
 │   ├── test_preprocessing.py        # Peak filtering and fingerprint tests
 │   ├── test_model.py                # Model shapes, gradient flow, and checkpoint tests
@@ -152,16 +173,16 @@ Enveda CASMI/
 │   ├── test_chemistry_aware_training.py # SupCon gradients, scheduler & sampler tests
 │   └── run_all_tests.py             # Dependency-free master test runner
 ├── checkpoints/                     # Model weights (.pt files, excluded from Git)
-├── outputs/                         # Candidate banks and benchmark JSONs (excluded)
+├── outputs/                         # Candidate banks and submission files (excluded)
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## 5. Getting Started & Reproducibility
+## 6. Getting Started & Reproducibility
 
-### 5.1 Environment Setup
+### 6.1 Environment Setup
 ```powershell
 # 1. Clone repository
 git clone https://github.com/Vaidik-Parsai/Enveda_CASMI_2026.git
@@ -175,38 +196,33 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-### 5.2 Execute the Unit Test Suite
+### 6.2 Execute the Unit Test Suite
 To verify the complete mathematics, gradient backpropagation, and data preprocessing:
 ```powershell
 .\venv\Scripts\python tests/run_all_tests.py
 # Output: TEST SUMMARY: 32/32 Passed, 0 Failed
 ```
 
-### 5.3 Building the Candidate Bank
+### 6.3 Building the Candidate Bank
 Precompute 128-dimensional embeddings and exact monoisotopic neutral masses for all 277,566 candidate SMILES:
 ```powershell
 .\venv\Scripts\python scripts/build_candidate_bank.py --checkpoint checkpoints/spectrum_molecule_step_5000.pt
 ```
 
-### 5.4 Evaluating the Champion Checkpoint
+### 6.4 Evaluating the Champion Checkpoint
 Run the official evaluation across the 400 validation molecules using mass-aware mean scoring:
 ```powershell
 .\venv\Scripts\python scripts/evaluate.py --checkpoint checkpoints/spectrum_molecule_step_5000.pt --sigma 20.0
 ```
 
-### 5.5 Generating Submission Predictions
+### 6.5 Generating Competition Test Predictions
 Generate the official CASMI top-25 ranked predictions for the 400 test molecules (1,213 spectra):
 ```powershell
-.\venv\Scripts\python scripts/predict.py --checkpoint checkpoints/spectrum_molecule_step_5000.pt --output outputs/submission_top25.csv
+.\venv\Scripts\python scripts/predict.py `
+    --checkpoint checkpoints/spectrum_molecule_step_5000.pt `
+    --method mass_mean `
+    --sigma_ppm 20.0 `
+    --top_k 25 `
+    --output_csv outputs/submission_top25.csv
 ```
-
----
-
-## 6. Engineering & Interview Highlights
-
-For technical reviewers and interviewers, this repository showcases:
-1. **Decoupled Bi-Encoder Architecture:** Reduces online search complexity from $\mathcal{O}(Q \times C)$ deep network forward passes to a single matrix dot product over offline precomputed embeddings.
-2. **Domain-Specific Inductive Priors:** Incorporates physical mass conservation via precursor neutral mass compensation and Gaussian soft scoring ($\sigma = 20\text{ ppm}$), solving the isomer ambiguity inherent in raw fragmentation.
-3. **Multi-Positive Contrastive Learning:** Correctly handles multiple spectra originating from the same molecule without treating identical chemical identities as false negatives.
-4. **Principled Failure Mode Diagnosis:** Audited extended training to discover in-batch negative starvation and representation collapse, leading to chemistry-aware hard-negative mining and effective rank tracking.
-5. **Interview Guide:** Refer to [`docs/INTERVIEW_GUIDE.md`](docs/INTERVIEW_GUIDE.md) for 18 multi-tiered technical explanations of every machine learning, mass spectrometry, and cheminformatics concept in this project.
+This generates `outputs/submission_top25.csv` and mirrors to `outputs/submission.csv` (400 rows, 25 semicolon-delimited SMILES, strictly matching the competition schema).

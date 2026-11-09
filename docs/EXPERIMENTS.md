@@ -148,3 +148,4 @@ Under our pre-registered Decision Protocol (Phase 4):
 * Promoting a new checkpoint requires strictly surpassing the benchmark on the competition primary metric (**MRR@25 > 0.2686**).
 * While Run C Step 2,000 established the project record for **Recall@25 (70.50%)**, its top-1 accuracy (14.00% vs 16.00%) and MRR@25 (0.2525 vs 0.2686) did not exceed the champion.
 * **Selection:** `checkpoints/spectrum_molecule_step_5000.pt` is definitively retained as the official competition champion.
+

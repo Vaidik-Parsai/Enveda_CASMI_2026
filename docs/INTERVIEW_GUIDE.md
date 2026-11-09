@@ -261,3 +261,4 @@ Implemented in `src/enveda/data/negative_sampler.py` (`ChemistryAwareNegativePoo
 - **Ablation Study:** Demonstrated that neural cosine similarity and Gaussian soft mass priors are orthogonal and mutually necessary signals ($S = S_{\text{neural}} \times S_{\text{mass}}$).
 - **Optimization Dynamics:** Confirmed that multi-positive MIL-NCE without $\frac{1}{|P|}$ normalization introduces multiplicity bias when scaled with hard negative pools, motivating Khosla Normalized SupCon for future iterations.
 - **Empirical Rigor:** Enforced strict, reproducible evaluation over an exact 277,566 candidate universe on zero-leakage InChIKey-split validation sets.
+
