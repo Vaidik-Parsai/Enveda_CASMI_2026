@@ -13,6 +13,7 @@ def save_checkpoint(
     model: nn.Module,
     optimizer: Optional[Optimizer] = None,
     scaler: Optional[torch.cuda.amp.GradScaler] = None,
+    scheduler: Optional[Any] = None,
     step: int = 0,
     epoch: int = 0,
     loss_history: Optional[List[float]] = None,
@@ -21,24 +22,7 @@ def save_checkpoint(
     is_best: bool = False,
     overwrite: bool = True,
 ) -> Path:
-    """Save model and optimizer state preserving baseline checkpoint structure.
-    
-    Args:
-        filepath: Destination path.
-        model: PyTorch model.
-        optimizer: PyTorch optimizer.
-        scaler: AMP GradScaler.
-        step: Global step count.
-        epoch: Epoch count.
-        loss_history: List of recorded loss floats.
-        best_metric: Best validation score.
-        config: Training configuration dictionary.
-        is_best: If True, also copies to best.pt in same directory.
-        overwrite: If False, raises FileExistsError if destination exists.
-        
-    Returns:
-        Path to the saved checkpoint.
-    """
+    """Save model, optimizer, scaler, and scheduler state preserving baseline checkpoint structure."""
     path = Path(filepath)
     if path.exists() and not overwrite:
         raise FileExistsError(f"Checkpoint already exists at {path} and overwrite=False.")
@@ -57,6 +41,9 @@ def save_checkpoint(
 
     if scaler is not None and hasattr(scaler, "state_dict"):
         state["scaler_state_dict"] = scaler.state_dict()
+
+    if scheduler is not None and hasattr(scheduler, "state_dict"):
+        state["scheduler_state_dict"] = scheduler.state_dict()
 
     if best_metric is not None:
         state["best_metric"] = best_metric
@@ -78,22 +65,11 @@ def load_checkpoint(
     model: nn.Module,
     optimizer: Optional[Optimizer] = None,
     scaler: Optional[torch.cuda.amp.GradScaler] = None,
+    scheduler: Optional[Any] = None,
     device: Union[str, torch.device] = "cpu",
     strict: bool = True,
 ) -> Dict[str, Any]:
-    """Load model and optimizer states with full backwards compatibility.
-    
-    Args:
-        filepath: Path to checkpoint file.
-        model: Model into which weights will be loaded.
-        optimizer: Optional optimizer to restore.
-        scaler: Optional GradScaler to restore.
-        device: Device to map tensors to.
-        strict: Whether to strictly enforce key matching in state_dict.
-        
-    Returns:
-        Dictionary containing loaded checkpoint metadata.
-    """
+    """Load model, optimizer, scaler, and scheduler states with full backwards compatibility."""
     path = Path(filepath)
     if not path.is_file():
         raise FileNotFoundError(f"Checkpoint not found at: {filepath}")
@@ -114,5 +90,9 @@ def load_checkpoint(
     # Load scaler state if available and requested
     if scaler is not None and "scaler_state_dict" in checkpoint:
         scaler.load_state_dict(checkpoint["scaler_state_dict"])
+
+    # Load scheduler state if available and requested
+    if scheduler is not None and "scheduler_state_dict" in checkpoint:
+        scheduler.load_state_dict(checkpoint["scheduler_state_dict"])
 
     return checkpoint

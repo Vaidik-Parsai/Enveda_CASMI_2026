@@ -86,6 +86,10 @@ class StreamingParquetDataset(IterableDataset):
         b_meta_dfs: List[pd.DataFrame] = []
         b_fps: List[np.ndarray] = []
         b_mol_ids: List[int] = []
+        b_inchikeys: List[str] = []
+        b_pmzs: List[float] = []
+        b_adducts: List[str] = []
+        b_modes: List[str] = []
 
         global_row_offset = 0
 
@@ -139,6 +143,10 @@ class StreamingParquetDataset(IterableDataset):
                 b_spectra.append(spec_vec)
                 b_fps.append(fp_vec.astype(np.float32))
                 b_mol_ids.append(mol_id)
+                b_inchikeys.append(str(mol_key))
+                b_pmzs.append(float(row.get("precursor_mz", 0.0)))
+                b_adducts.append(str(row.get("adduct", "")))
+                b_modes.append(str(row.get("ionization_mode", "")))
 
             # Accumulate metadata features
             if len(b_meta_dfs) == 0:
@@ -152,21 +160,36 @@ class StreamingParquetDataset(IterableDataset):
                 fp_batch = np.array(b_fps[: self.batch_size], dtype=np.float32)
                 meta_batch = curr_meta[: self.batch_size]
                 id_batch = np.array(b_mol_ids[: self.batch_size], dtype=np.int64)
+                inchikey_batch = b_inchikeys[: self.batch_size]
+                pmz_batch = np.array(b_pmzs[: self.batch_size], dtype=np.float32)
+                adduct_batch = b_adducts[: self.batch_size]
+                mode_batch = b_modes[: self.batch_size]
 
                 b_spectra = b_spectra[self.batch_size :]
                 b_fps = b_fps[self.batch_size :]
                 curr_meta = curr_meta[self.batch_size :]
                 b_mol_ids = b_mol_ids[self.batch_size :]
+                b_inchikeys = b_inchikeys[self.batch_size :]
+                b_pmzs = b_pmzs[self.batch_size :]
+                b_adducts = b_adducts[self.batch_size :]
+                b_modes = b_modes[self.batch_size :]
 
                 batch_dict = {
                     "spectrum": torch.from_numpy(spec_batch),
                     "metadata": torch.from_numpy(meta_batch),
                     "fingerprint": torch.from_numpy(fp_batch),
                     "molecule_ids": torch.from_numpy(id_batch),
+                    "inchikeys": inchikey_batch,
+                    "precursor_mzs": pmz_batch,
+                    "adducts": adduct_batch,
+                    "ionization_modes": mode_batch,
                 }
 
                 if self.device is not None:
-                    batch_dict = {k: v.to(self.device, non_blocking=True) for k, v in batch_dict.items()}
+                    batch_dict = {
+                        k: v.to(self.device, non_blocking=True) if isinstance(v, torch.Tensor) else v
+                        for k, v in batch_dict.items()
+                    }
 
                 yield batch_dict
 

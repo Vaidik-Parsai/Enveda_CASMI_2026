@@ -1,8 +1,32 @@
+# Virtual Environment
 venv/
+.venv/
+env/
+
+# Checkpoints and weights
 checkpoints/
+*.pt
+*.pth
+*.ckpt
+
+# Outputs, predictions, and logs
+outputs/
+*.log
+
+# Caches and bytecode
 __pycache__/
 *.py[cod]
 *.pyo
+.pytest_cache/
 data/cache/
-outputs/
 
+# Datasets and large arrays
+*.parquet
+*.npy
+*.npz
+
+# IDE & OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

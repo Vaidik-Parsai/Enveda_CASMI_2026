@@ -3,6 +3,7 @@
 from enveda.data.collate import collate_spectrum_batch
 from enveda.data.dataset import MemoryMappedBatchDataset, StreamingParquetDataset
 from enveda.data.features import MetadataPreprocessor
+from enveda.data.negative_sampler import ChemistryAwareNegativePool
 from enveda.data.preprocessing import (
     bin_spectrum_vector,
     extract_single_ce_stats,
@@ -21,4 +22,5 @@ __all__ = [
     "StreamingParquetDataset",
     "MemoryMappedBatchDataset",
     "collate_spectrum_batch",
+    "ChemistryAwareNegativePool",
 ]

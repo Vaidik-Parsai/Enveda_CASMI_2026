@@ -29,6 +29,9 @@ def parse_args():
     parser.add_argument("--steps", type=int, default=None, help="Override max training steps")
     parser.add_argument("--device", type=str, default=None, help="Override compute device (cuda/cpu)")
     parser.add_argument("--batch_size", type=int, default=None, help="Override batch size")
+    parser.add_argument("--checkpoint_interval", type=int, default=None, help="Steps between checkpoint saves")
+    parser.add_argument("--hard_negative_weight", type=float, default=1.5, help="Multiplier for hard negative pairs")
+    parser.add_argument("--hard_tanimoto_threshold", type=float, default=0.4, help="Tanimoto threshold for hard negatives")
     return parser.parse_args()
 
 
@@ -41,6 +44,12 @@ def main():
         config.training.max_steps = args.steps
     if args.batch_size is not None:
         config.training.batch_size = args.batch_size
+    if args.checkpoint_interval is not None:
+        config.training.checkpoint_interval = args.checkpoint_interval
+    if args.hard_negative_weight is not None:
+        config.training.hard_negative_weight = args.hard_negative_weight
+    if args.hard_tanimoto_threshold is not None:
+        config.training.hard_tanimoto_threshold = args.hard_tanimoto_threshold
 
     device_str = args.device or config.training.device
     if device_str == "cuda" and not torch.cuda.is_available():
@@ -111,13 +120,6 @@ def main():
         weight_decay=config.training.weight_decay,
     )
 
-    start_step = 0
-    if args.resume:
-        logger.info(f"Resuming model and optimizer from checkpoint: {args.resume}")
-        ckpt_meta = load_checkpoint(args.resume, model=model, optimizer=optimizer, device=device)
-        start_step = ckpt_meta.get("step", 0)
-        logger.info(f"Resumed from step {start_step}")
-
     # 4. Streaming Dataset
     train_row_set = set(train_rows)
     train_dataset = StreamingParquetDataset(
@@ -143,6 +145,20 @@ def main():
         train_dataset=train_dataset,
         logger=logger,
     )
+
+    start_step = 0
+    if args.resume:
+        logger.info(f"Resuming model, optimizer, and scaler from checkpoint: {args.resume}")
+        ckpt_meta = load_checkpoint(
+            args.resume,
+            model=model,
+            optimizer=optimizer,
+            scaler=trainer.scaler,
+            device=device,
+        )
+        start_step = ckpt_meta.get("step", 0)
+        trainer.loss_history = list(ckpt_meta.get("loss_history", []))
+        logger.info(f"Resumed from step {start_step} (loss history: {len(trainer.loss_history)} records)")
 
     trainer.train(start_step=start_step)
 

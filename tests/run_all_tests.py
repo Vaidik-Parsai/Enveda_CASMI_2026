@@ -17,10 +17,13 @@ import tests.test_preprocessing as t_prep
 import tests.test_model as t_model
 import tests.test_dataset_and_split as t_data
 import tests.test_retrieval as t_ret
+import tests.test_aggregation as t_agg
+import tests.test_mass_filter as t_mass
+import tests.test_chemistry_aware_training as t_chem
 
 
 def run_tests():
-    modules = [t_prep, t_model, t_data, t_ret]
+    modules = [t_prep, t_model, t_data, t_ret, t_agg, t_mass, t_chem]
     passed = 0
     failed = 0
     total = 0

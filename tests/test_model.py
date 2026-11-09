@@ -63,6 +63,41 @@ def test_loss_finite_and_gradients():
     assert mol_weight_grad is not None and torch.isfinite(mol_weight_grad).all().item()
 
 
+def test_hard_negative_mining():
+    batch_size = 4
+    model = SpectrumMoleculeModel()
+    model.train()
+
+    spec = torch.randn(batch_size, 10000)
+    meta = torch.randn(batch_size, 130)
+    fp = torch.randint(0, 2, (batch_size, 2048)).float()
+    mol_ids = torch.tensor([100, 200, 100, 300], dtype=torch.int64)
+
+    s_emb, m_emb = model(spec, meta, fp)
+
+    # 1. Baseline loss without hard negative weighting
+    loss_base = multi_positive_contrastive_loss(s_emb, m_emb, mol_ids, hard_negative_weight=1.0)
+    assert torch.isfinite(loss_base).item()
+
+    # 2. Hard negative mining loss (weight=2.5, threshold=0.2)
+    loss_hn = multi_positive_contrastive_loss(
+        s_emb,
+        m_emb,
+        mol_ids,
+        fingerprints=fp,
+        hard_negative_weight=2.5,
+        hard_tanimoto_threshold=0.2,
+    )
+    assert torch.isfinite(loss_hn).item()
+
+    # Loss with hard negative penalty should be >= baseline
+    assert loss_hn.item() >= loss_base.item() - 1e-5
+
+    # Check backpropagation with hard negative loss
+    loss_hn.backward()
+    assert model.spectrum_encoder.network[0].weight.grad is not None
+
+
 def test_checkpoint_save_load_and_resume(tmp_path):
     model = SpectrumMoleculeModel()
     optimizer = torch.optim.AdamW(model.parameters(), lr=1e-4)

@@ -1,211 +1,212 @@
 # Enveda CASMI 2026: Mass-Spectra-to-Molecule Retrieval Pipeline
 
-A production-grade, memory-efficient, and modular PyTorch machine learning pipeline for the **Enveda CASMI 2026** competition.
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch 2.0+](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
+[![RDKit](https://img.shields.io/badge/RDKit-2023.09+-green.svg)](https://www.rdkit.org/)
+[![Tests Passing](https://img.shields.io/badge/tests-32%2F32%20passing-brightgreen.svg)](tests/)
+[![MRR@25 Champion](https://img.shields.io/badge/Champion%20MRR@25-0.2686-gold.svg)](checkpoints/)
+[![Recall@25 Record](https://img.shields.io/badge/Record%20Recall@25-70.50%25-brightgreen.svg)](docs/PHASE_6B_RUN_C_RESULTS.md)
+
+Production-grade, modular, and memory-efficient deep learning pipeline for the **Enveda CASMI 2026** competition: identifying 2D molecular structures from experimental tandem mass spectrometry ($\text{MS/MS}$) data.
 
 ---
 
-## 1. High-Level Architecture & Data Flow
+## 1. Executive Summary & Benchmark Highlights
 
-The model uses a **Two-Tower Neural Retrieval Architecture** where mass spectra and candidate molecules are mapped into a shared 128-dimensional embedding space. In this space, cosine similarity directly measures the likelihood that a candidate molecule produced a given experimental mass spectrum.
+In the Enveda CASMI 2026 challenge, algorithms must identify the true chemical structure for unknown molecules from their experimental mass spectra, selecting from an open candidate database of **277,566 candidate SMILES**.
+
+### Key System Achievements
+* **Official Champion Checkpoint:** `checkpoints/spectrum_molecule_step_5000.pt` achieves **MRR@25 = 0.2686**, **Recall@1 = 16.00%**, and **Recall@25 = 69.75%** on 400 held-out validation molecules (17,267 spectra) partitioned strictly by molecular scaffold (`inchikey14`).
+* **Physics-Informed Mass Scoring Breakthrough:** Combining dual-tower neural cosine similarity with Gaussian soft precursor neutral mass scoring ($\sigma = 20\text{ ppm}$) improved MRR@25 from **0.0006 to 0.2686** (**+44,667% relative improvement**).
+* **New Project Record for Candidate Coverage:** In Phase 6B Run C, chemistry-conditioned hard-negative training pushed **Recall@25 to an all-time record 70.50%**, with **Target Survival Rate reaching 98.00%**.
+* **Zero Leakage & Reproducibility:** 100% deterministic scaffold grouping, strict candidate identity masking, AMP mixed-precision training (`init_scale=8192.0`), and **32/32 passing unit tests**.
+
+---
+
+## 2. End-to-End System Architecture
 
 ```
-       [ Mass Spectrum (m/z, ints) ]              [ Candidate SMILES ]
-                    │                                      │
-       Filter Noise (Top-128 peaks)              Morgan Fingerprint (ECFP4)
-                    │                             (Radius 2, 2048 bits)
-       Binned Vector (10,000 bins)                         │
-                    │                                      │
-     Concatenate Tabular Metadata (130 dims)               │
-                    │                                      │
-                    ▼                                      ▼
-        ┌───────────────────────┐              ┌───────────────────────┐
-        │    Spectrum Tower     │              │    Molecule Tower     │
-        │ Linear (10130 -> 512) │              │ Linear (2048 -> 512)  │
-        │ LayerNorm + GELU      │              │ LayerNorm + GELU      │
-        │ Linear (512 -> 256)   │              │ Linear (512 -> 256)   │
-        │ LayerNorm + GELU      │              │ LayerNorm + GELU      │
-        │ Linear (256 -> 128)   │              │ Linear (256 -> 128)   │
-        │ L2 Normalization      │              │ L2 Normalization      │
-        └───────────────────────┘              └───────────────────────┘
-                    │                                      │
-                    ▼                                      ▼
-           Spectrum Embedding                      Molecule Embedding
-            (Shape: [B, 128])                      (Shape: [B, 128])
-                    │                                      │
-                    └───────────────┬──────────────────────┘
-                                    │
-                                    ▼
-                         Cosine Similarity Logits
-                          (Temperature tau = 0.07)
-                                    │
-                                    ▼
-                   Multi-Positive Symmetric Contrastive Loss
+[ Query MS/MS Spectrum ]                       [ Candidate Molecular Structures ]
+ (m/z, intensity arrays)                               (277,566 SMILES)
+           │                                                   │
+  Noise Thresholding &                                 RDKit Canonicalization &
+  Top-128 Peak Selection                               Morgan Fingerprints (2048-bit)
+           │                                                   │
+  Sparse m/z Binning (10,000 bins)                             │
+           │                                                   │
+  Tabular Metadata (130 dims)                                  │
+  (Precursor m/z, Adduct, Mode, CE)                            │
+           │                                                   │
+           ▼                                                   ▼
+┌─────────────────────────────────┐                 ┌─────────────────────────────────┐
+│     Spectrum Encoder (MLP)      │                 │     Molecule Encoder (MLP)      │
+│  Linear(10130 -> 512), LN, GELU │                 │  Linear(2048 -> 512), LN, GELU  │
+│  Linear(512 -> 256),   LN, GELU │                 │  Linear(512 -> 256),   LN, GELU │
+│  Linear(256 -> 128),   L2-Norm  │                 │  Linear(256 -> 128),   L2-Norm  │
+└─────────────────────────────────┘                 └─────────────────────────────────┘
+                 │                                                   │
+                 ▼                                                   ▼
+         Spectrum Embedding                                 Molecule Embedding
+           z_s in S^127                                        z_m in S^127
+                 │                                                   │
+                 └─────────────────────────┬─────────────────────────┘
+                                           │
+                                           ▼
+                               Neural Cosine Similarity
+                                 S_neural = <z_s, z_m>
+                                           │
+[ Experimental Precursor m/z ]             │
+              │                            │
+   Adduct Mass Compensation                │
+              │                            │
+   Consensus Neutral Mass                  │
+              │                            │
+   Gaussian Soft Mass Scoring ─────────────┤
+    S_mass = exp(-0.5*(ppm/20)^2)          ▼
+                             Combined Mass-Aware Score
+                          S_comb = S_neural * S_mass
+                                           │
+                                           ▼
+                             Multi-Spectrum Aggregation
+                         (Mass-Aware Mean across spectra)
+                                           │
+                                           ▼
+                             Top-25 Ranked SMILES Output
 ```
 
 ---
 
-## 2. Project Directory Structure
+## 3. Comprehensive Experimental Benchmarks
+
+All evaluations are conducted against the full **277,566 candidate SMILES bank** across **400 held-out validation molecules** (17,267 experimental spectra) under identical conditions ($\sigma = 20\text{ ppm}$):
+
+| Experiment / Checkpoint | Description | MRR@25 | Recall@1 | Recall@5 | Recall@10 | Recall@25 | Target Survival | Effective Rank |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| **Raw Baseline** | Neural similarity only (no mass) | 0.0006 | 0.00% | 0.00% | 0.25% | 0.50% | 100.00% | 78.1 |
+| **Mass-Only Baseline** | Gaussian soft mass only (no neural) | 0.0435 | 1.75% | 5.50% | 8.75% | 18.25% | 98.00% | — |
+| **Current Champion (`step_5000.pt`)** | Multi-positive MIL-NCE (in-batch) | **0.2686** | **16.00%** | **40.00%** | 50.50% | 69.75% | **98.00%** | **70.6** |
+| **Step 10,000** | Constant LR training drift | 0.2638 | 15.50% | 39.25% | 49.75% | 69.00% | 98.00% | 64.2 |
+| **Step 20,000** | Constant LR training drift | 0.2604 | 15.00% | 38.50% | 49.00% | 68.50% | 98.00% | 55.3 |
+| **Phase 6B Run A (Step 5,000)** | Cosine LR Warmup Baseline | 0.2573 | 15.00% | 36.75% | **51.50%** | 67.75% | 98.00% | 66.1 |
+| **Phase 6B Run C (Step 2,000)** | MIL-NCE + Chemistry Negatives | 0.2525 | 14.00% | 37.25% | **51.50%** | **70.50%** | **98.00%** | 63.3 |
+
+### Benchmark Definitions
+* **Target Survival Rate (98.00%):** The proportion of true target molecules whose monoisotopic neutral mass falls within the candidate pool's consensus neutral mass tolerance ($\pm 50\text{ ppm}$). This represents the theoretical upper-bound ceiling for mass-filtered retrieval.
+* **Recall@25 (70.50%):** The proportion of true target molecules successfully retrieved and ranked inside the top 25 candidates by our dual-tower scoring engine.
+
+---
+
+## 4. Repository Structure
 
 ```text
 Enveda CASMI/
 ├── configs/
-│   └── default.yaml                 # Centralized configuration (data paths, hyperparams)
+│   └── default.yaml                 # Centralized configuration (paths, hyperparams)
 ├── docs/
-│   └── PIPELINE_AUDIT.md            # Technical audit of architecture & memory bottlenecks
+│   ├── ARCHITECTURE.md              # Deep technical design & Mermaid pipeline diagrams
+│   ├── EXPERIMENTS.md               # Empirical progression, ablations & checkpoint benchmarks
+│   ├── INTERVIEW_GUIDE.md           # 18 multi-level technical interview questions & answers
+│   ├── LIMITATIONS_AND_FUTURE_WORK.md# Statistical bounds, vulnerabilities & future research
+│   ├── METRICS_AUDIT.md             # Truncated MRR@25 audit & mathematical definitions
+│   ├── PHASE_6A_TRAINING_AUDIT.md   # Diagnosis of dimensional collapse & negative starvation
+│   ├── PHASE_6B_EXPERIMENT_DESIGN.md# Controlled 4-arm experiment protocol
+│   ├── PHASE_6B_RUN_A_RESULTS.md    # Cosine scheduler baseline results
+│   └── PHASE_6B_RUN_C_RESULTS.md    # Chemistry-aware negative training report
 ├── src/
 │   └── enveda/
-│       ├── __init__.py
-│       ├── config.py                # YAML configuration loader
+│       ├── config.py                # Configuration loader
 │       ├── data/
-│       │   ├── __init__.py
+│       │   ├── dataset.py           # StreamingParquetDataset and batch processing
+│       │   ├── negative_sampler.py  # ChemistryAwareNegativePool (mass, structural, random)
 │       │   ├── preprocessing.py     # Noise filtering, m/z binning, Morgan fingerprints
 │       │   ├── features.py          # Tabular metadata scaling & categorical encoding
-│       │   ├── split.py             # Deterministic GroupShuffleSplit by inchikey14
-│       │   ├── dataset.py           # StreamingParquetDataset and MemoryMappedBatchDataset
-│       │   └── collate.py           # PyTorch batch collation
+│       │   └── split.py             # Deterministic GroupShuffleSplit by inchikey14
 │       ├── models/
-│       │   ├── __init__.py
 │       │   └── model.py             # SpectrumEncoder, MoleculeEncoder, SpectrumMoleculeModel
 │       ├── training/
-│       │   ├── __init__.py
-│       │   ├── losses.py            # Multi-positive symmetric contrastive loss
-│       │   ├── checkpointing.py     # Backward-compatible checkpoint saver/loader
-│       │   └── trainer.py           # AMP mixed-precision batch trainer
+│       │   ├── losses.py            # MIL-NCE & Normalized Supervised Contrastive Loss
+│       │   ├── schedulers.py        # CosineWarmupScheduler with minimum floor
+│       │   ├── diagnostics.py       # Effective rank and embedding isotropy tracking
+│       │   ├── checkpointing.py     # Backward-compatible checkpoint persistence
+│       │   └── trainer.py           # AMP mixed-precision batch trainer (init_scale=8192)
 │       ├── evaluation/
-│       │   ├── __init__.py
-│       │   ├── metrics.py           # Recall@1, 5, 25, MRR, Mean Rank
-│       │   └── retrieval.py         # Chunked top-k retrieval & candidate bank builder
+│       │   ├── mass_filter.py       # Consensus neutral mass & Gaussian soft mass scoring
+│       │   ├── aggregation.py       # Multi-spectrum molecule-level score fusion
+│       │   ├── reranker.py          # CandidateReranker orchestration
+│       │   ├── metrics.py           # MRR@25, Recall@1/5/10/25, Mean/Median Rank
+│       │   └── retrieval.py         # Chunked GPU top-k candidate retrieval
 │       └── utils/
-│           ├── __init__.py
 │           ├── logging.py           # Dual console & file logger
 │           └── reproducibility.py   # Deterministic seed management
 ├── scripts/
-│   ├── smoke_test.py                # End-to-end synthetic verification test
-│   ├── train.py                     # Full model training CLI
-│   ├── build_candidate_bank.py      # Build disk-backed candidate embeddings
-│   ├── evaluate.py                  # Chunked evaluation on validation queries
+│   ├── train_phase6b.py             # Controlled Phase 6B multi-arm training runner
+│   ├── evaluate_phase6b_run_c.py    # Complete Run C evaluation over 277k candidate bank
+│   ├── run_mass_ablation_and_step_eval.py # Controlled ablation benchmark runner
+│   ├── build_candidate_bank.py      # Precompute offline candidate embeddings & masses
 │   └── predict.py                   # Generate Top-25 test submission file
 ├── tests/
 │   ├── test_preprocessing.py        # Peak filtering and fingerprint tests
 │   ├── test_model.py                # Model shapes, gradient flow, and checkpoint tests
-│   ├── test_dataset_and_split.py    # Group split zero-overlap and preprocessor tests
-│   ├── test_retrieval.py            # Chunked top-k exactness vs brute-force tests
-│   └── run_all_tests.py             # Dependency-free test runner
-├── checkpoints/                     # Model weights (.pt files)
-├── outputs/                         # Predictions, logs, and candidate banks
+│   ├── test_mass_filter.py          # Exact monoisotopic mass & soft scoring tests
+│   ├── test_aggregation.py          # Molecule-level score aggregation tests
+│   ├── test_chemistry_aware_training.py # SupCon gradients, scheduler & sampler tests
+│   └── run_all_tests.py             # Dependency-free master test runner
+├── checkpoints/                     # Model weights (.pt files, excluded from Git)
+├── outputs/                         # Candidate banks and benchmark JSONs (excluded)
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## 3. Memory Safety: How OOM Crashes Are Prevented
+## 5. Getting Started & Reproducibility
 
-Training on 2.54M spectra and evaluating against 275k candidate molecules would normally exhaust both system RAM (>25 GB) and GPU VRAM (>6 GB) if handled naively. This refactored pipeline guarantees safety via four principles:
-
-1. **Streaming Data Ingestion (`StreamingParquetDataset`):**
-   - Uses PyArrow's `ParquetFile.iter_batches()` to stream record batches (e.g. 1,024 rows) at a time.
-   - Never loads the entire `train.parquet` into a Pandas DataFrame.
-   - Densifies only the current mini-batch (e.g. 128 rows) into dense arrays.
-2. **GPU Device Isolation:**
-   - Only the active mini-batch (size 64–128) is transferred to the GPU.
-   - Tensors are deleted and garbage collected immediately after the optimizer step.
-3. **Automatic Mixed Precision (AMP):**
-   - Utilizes `torch.autocast(device_type="cuda")` with `GradScaler`, halving activations memory footprint on RTX 3050.
-4. **Chunked Candidate Bank Search (`chunked_topk_search`):**
-   - Candidate embeddings (275k x 128 floats) are stored in memory-mapped format on disk (`np.lib.format.open_memmap`).
-   - Query spectra are compared against candidate blocks in chunks (e.g. 5,000–10,000 candidates at a time).
-   - Maintains a running Top-25 using `torch.topk`, entirely avoiding the creation of the massive $130,000 \times 275,000$ similarity matrix (~145 GB).
-
----
-
-## 4. Quick Start Commands (Windows PowerShell)
-
-All commands should be executed from the project root in Windows PowerShell using your virtual environment:
-
-### Step 1: Run the Smoke Test
-Verifies end-to-end data processing, forward/backward passes, checkpoint saving, and chunked retrieval in under 2 seconds on synthetic data without touching large competition files:
+### 5.1 Environment Setup
 ```powershell
-.\venv\Scripts\python.exe scripts/smoke_test.py
+# 1. Clone repository
+git clone https://github.com/Vaidik-Parsai/Enveda_CASMI_2026.git
+cd "Enveda CASMI"
+
+# 2. Create and activate Python virtual environment
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+
+# 3. Install dependencies
+pip install -r requirements.txt
 ```
 
-### Step 2: Run the Unit Test Suite
-Executes all 15 unit tests covering preprocessing, model integrity, existing checkpoint compatibility, and retrieval exactness:
+### 5.2 Execute the Unit Test Suite
+To verify the complete mathematics, gradient backpropagation, and data preprocessing:
 ```powershell
-.\venv\Scripts\python.exe tests/run_all_tests.py
+.\venv\Scripts\python tests/run_all_tests.py
+# Output: TEST SUMMARY: 32/32 Passed, 0 Failed
 ```
 
-### Step 3: Train the Model
-Starts training from scratch using `configs/default.yaml`:
+### 5.3 Building the Candidate Bank
+Precompute 128-dimensional embeddings and exact monoisotopic neutral masses for all 277,566 candidate SMILES:
 ```powershell
-.\venv\Scripts\python.exe scripts/train.py --config configs/default.yaml
+.\venv\Scripts\python scripts/build_candidate_bank.py --checkpoint checkpoints/spectrum_molecule_step_5000.pt
 ```
 
-To resume training from an existing checkpoint (e.g., step 1,000):
+### 5.4 Evaluating the Champion Checkpoint
+Run the official evaluation across the 400 validation molecules using mass-aware mean scoring:
 ```powershell
-.\venv\Scripts\python.exe scripts/train.py --config configs/default.yaml --resume checkpoints/spectrum_molecule_step_1000.pt
+.\venv\Scripts\python scripts/evaluate.py --checkpoint checkpoints/spectrum_molecule_step_5000.pt --sigma 20.0
 ```
 
-To train with a custom batch size if VRAM is constrained:
+### 5.5 Generating Submission Predictions
+Generate the official CASMI top-25 ranked predictions for the 400 test molecules (1,213 spectra):
 ```powershell
-.\venv\Scripts\python.exe scripts/train.py --config configs/default.yaml --batch_size 64
-```
-
-### Step 4: Build Candidate Molecular Bank
-Encodes candidate molecules in bounded batches into a memory-mapped disk file:
-```powershell
-.\venv\Scripts\python.exe scripts/build_candidate_bank.py --config configs/default.yaml --checkpoint checkpoints/spectrum_molecule_step_1000.pt
-```
-
-### Step 5: Evaluate Retrieval Performance
-Evaluates validation queries against the candidate bank, reporting Recall@1, Recall@5, Recall@25, and MRR:
-```powershell
-.\venv\Scripts\python.exe scripts/evaluate.py --config configs/default.yaml --checkpoint checkpoints/spectrum_molecule_step_1000.pt --num_queries 1000
-```
-
-### Step 6: Generate Competition Submission
-Generates Top-25 predictions for `test.parquet` formatted as `submission_top25.csv`:
-```powershell
-.\venv\Scripts\python.exe scripts/predict.py --config configs/default.yaml --checkpoint checkpoints/spectrum_molecule_step_1000.pt --output_csv outputs/submission_top25.csv
+.\venv\Scripts\python scripts/predict.py --checkpoint checkpoints/spectrum_molecule_step_5000.pt --output outputs/submission_top25.csv
 ```
 
 ---
 
-## 5. Configuration Guide (`configs/default.yaml`)
+## 6. Engineering & Interview Highlights
 
-Edit `configs/default.yaml` to adjust paths and parameters:
-
-```yaml
-data:
-  train_path: "C:/Users/vaidi/.cache/kagglehub/competitions/enveda-CASMI26-molecule-id-mass-spectra/train.parquet"
-  test_path: "C:/Users/vaidi/.cache/kagglehub/competitions/enveda-CASMI26-molecule-id-mass-spectra/test.parquet"
-  val_fraction: 0.05
-  seed: 42
-  spectrum_threshold: 0.01
-  spectrum_top_n: 128
-  
-training:
-  batch_size: 128             # Lower to 64 or 32 if CUDA out-of-memory occurs
-  learning_rate: 0.0001
-  max_steps: 1000
-  mixed_precision: true       # Uses FP16 autocast on CUDA
-  device: "cuda"
-  checkpoint_interval: 100
-  output_dir: "outputs"
-  checkpoint_dir: "checkpoints"
-
-evaluation:
-  batch_size: 64
-  candidate_chunk_size: 10000 # Size of candidate blocks evaluated in memory
-  top_k: 25
-```
-
----
-
-## 6. Checkpoint Compatibility
-
-The refactored `SpectrumMoleculeModel` strictly matches the module naming, layer indices, and tensor shapes of the existing checkpoints:
-- `spectrum_encoder.network.{0,1,4,5,8}.{weight,bias}`
-- `molecule_encoder.network.{0,1,4,5,8}.{weight,bias}`
-
-Both `spectrum_molecule_step_100.pt` and `spectrum_molecule_step_1000.pt` load cleanly and seamlessly in both `Trainer` and evaluation scripts.
+For technical reviewers and interviewers, this repository showcases:
+1. **Decoupled Bi-Encoder Architecture:** Reduces online search complexity from $\mathcal{O}(Q \times C)$ deep network forward passes to a single matrix dot product over offline precomputed embeddings.
+2. **Domain-Specific Inductive Priors:** Incorporates physical mass conservation via precursor neutral mass compensation and Gaussian soft scoring ($\sigma = 20\text{ ppm}$), solving the isomer ambiguity inherent in raw fragmentation.
+3. **Multi-Positive Contrastive Learning:** Correctly handles multiple spectra originating from the same molecule without treating identical chemical identities as false negatives.
+4. **Principled Failure Mode Diagnosis:** Audited extended training to discover in-batch negative starvation and representation collapse, leading to chemistry-aware hard-negative mining and effective rank tracking.
+5. **Interview Guide:** Refer to [`docs/INTERVIEW_GUIDE.md`](docs/INTERVIEW_GUIDE.md) for 18 multi-tiered technical explanations of every machine learning, mass spectrometry, and cheminformatics concept in this project.
